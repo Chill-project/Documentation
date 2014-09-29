@@ -53,7 +53,8 @@ Create your Chill project using composer:
 
 .. code-block:: bash
 
-   php composer.phar create-project champs-libres/chill-standard path/to/your/directory --stability=dev
+   php composer.phar create-project champs-libres/chill-standard \
+     path/to/your/directory --stability=dev
 
 .. note::
    Until now, the stability of the project is set to "dev". Do not forget this argument, or composer will fail to download and create the project.
