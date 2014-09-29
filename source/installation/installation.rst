@@ -38,6 +38,7 @@ move composer.phar to your system (optional)
 Install composer globally on you system will made the installation process more convenient. To do this, simply run 
 
 .. code-block:: bash
+
    sudo mv composer.phar /usr/local/bin/composer
 
 Then, just run `composer` instead of `php composer.phar`
@@ -51,6 +52,7 @@ Create your project
 Create your Chill project using composer:
 
 .. code-block:: bash
+
    php composer.phar create-project champs-libres/chill-standard path/to/your/directory --stability=dev
 
 .. note::
@@ -73,10 +75,12 @@ Launch your server
 
 If everything was fine, you are able to launch your built-in server :
 
-.. code-block::bash
+.. code-block:: bash
+
    php app/console server:run
 
 Your server should now be available at `http://localhost:8000`
 
 .. _the composer documentation: https://getcomposer.org/doc/
 .. _the composer introduction: https://getcomposer.org/doc/00-intro.md
+.. _the standard architecture: https://github.com/Champs-Libres/chill-standard
