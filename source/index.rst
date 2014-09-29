@@ -18,11 +18,19 @@ Contents of this documentation:
    installation/installation.rst
 
 
+Contribute
+==========
 
-Indices and tables
-==================
+* `Issue tracker <https://redmine.champs-libres.coop/projects/chill/issues>`_ (the certificate is available `here <http://champs-libres.coop/ca.pem>`_)
+* source code is available here :
 
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+   * Chill-standard : https://github.com/Champs-Libres/chill-standard
+   * Chill-main : https://github.com/Champs-Libres/ChillMain
 
+Licence
+========
+
+The project is available under the `GPLv3 licence`_.
+
+
+.. _GPLv3 licence: http://www.gnu.org/licenses/gpl-3.0.txt
