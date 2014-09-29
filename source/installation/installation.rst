@@ -78,6 +78,7 @@ If everything was fine, you are able to launch your built-in server :
 
 .. code-block:: bash
 
+   cd path/to/your/directory
    php app/console server:run
 
 Your server should now be available at `http://localhost:8000`
