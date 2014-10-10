@@ -9,6 +9,8 @@
 Development
 ###########
 
+As Chill rely on the `symfony <http://symfony.com>`_ framework, reading the framework's documentation should answer most of your questions. We are explaining here some tips to work with Chill, and things we provide to encounter our needs.
+
 .. toctree::
     :maxdepth: 2
 
@@ -16,3 +18,8 @@ Development
     Instructions to create a new bundle <create-a-new-bundle.rst>
     Bundles and tests <make-test-working.rst>
 
+
+Help, I am lost !
+*****************
+
+Write an email at info@champs-libres.coop, and we will help you !

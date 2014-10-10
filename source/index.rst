@@ -16,7 +16,7 @@ Welcome to Chill documentation!
 
 Chill is a free software for social workers.
 
-Chill rely on the php framework Symfony. If you know symfony, you should not be lost. Symfony has a very good documentation.
+Chill rely on the php framework `Symfony <http://symfony.com>`_. 
 
 Contents of this documentation:
 
@@ -29,6 +29,7 @@ Contents of this documentation:
 
 Contribute
 ==========
+
 
 * `Issue tracker <https://redmine.champs-libres.coop/projects/chill/issues>`_ (the certificate is available `here <http://champs-libres.coop/ca.pem>`_)
 * source code is available here :
