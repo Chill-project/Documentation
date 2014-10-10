@@ -1,9 +1,23 @@
+.. Copyright (C)  2014 Champs Libres Cooperative SCRLFS
+   Permission is granted to copy, distribute and/or modify this document
+   under the terms of the GNU Free Documentation License, Version 1.3
+   or any later version published by the Free Software Foundation;
+   with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
+   A copy of the license is included in the section entitled "GNU
+   Free Documentation License".
+
 Installation
 ############
+
+
+.. _basic-installation:
 
 Basic installation
 ``````````````````
 
+
+
+Chill is written in PHP and use the `symfony framework`_. We take advantages of all the framework's feature, and installation should be as simple as installing symfony.
 
 Requirements
 ------------
@@ -93,6 +107,12 @@ Composer will download `the standard architecture`_ and ask you a few question a
 
 You may accept the default parameters of `debug_toolbar`, `debug_redirects` and `use_assetic_controller` for a demonstration installation. For production, set them all to `false`.
 
+If composer ask you the following question : ::
+
+  Do you want to remove the existing VCS (.git, .svn..) history? [Y,n]?
+
+You may answer `Y` (Yes), or simply press the `return` button.
+
 Launch your server
 ^^^^^^^^^^^^^^^^^^
 
@@ -110,3 +130,4 @@ Your server should now be available at `http://localhost:8000`. Type this addres
 .. _the standard architecture: https://github.com/Champs-Libres/chill-standard
 .. _composer: https://getcomposer.org
 .. _Firefox: https://www.mozilla.org
+.. _symfony framework: http://symfony.com
