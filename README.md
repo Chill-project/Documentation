@@ -12,6 +12,7 @@ Compilation into HTML
 To compile this documentation :
 
 1. Install [sphinx-doc](http://sphinx-doc.org)
+2. Install the Sphinx theme provided by Read the Docs : `sudo pip install sphinx_rtd_theme`
 2. run `make html` from the root directory
 3. The base file is located on build/html/index.html
 
