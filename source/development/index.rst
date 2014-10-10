@@ -8,3 +8,11 @@
 
 Development
 ###########
+
+.. toctree::
+    :maxdepth: 2
+
+    Install Chill for development <installation.rst>
+    Instructions to create a new bundle <create-a-new-bundle.rst>
+    Bundles and tests <make-test-working.rst>
+

@@ -25,9 +25,7 @@ Contents of this documentation:
 
    installation/installation.rst
    development/index.rst
-   development/installation.rst
-   development/create-a-new-bundle.rst
-   development/make-test-working.rst
+
 
 Contribute
 ==========
