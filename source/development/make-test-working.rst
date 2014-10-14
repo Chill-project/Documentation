@@ -30,7 +30,7 @@ On the developer's machine test should be runnable with two or three commands **
    $ // command to insert fixtures, ...
    $ phpunit
 
-This chapter has been inspired by `this useful blog post <>`_.
+This chapter has been inspired by `this useful blog post <http://blog.kevingomez.fr/2013/01/09/functional-testing-standalone-symfony2-bundles/>`_.
 
 Bootstrap phpunit for a standalone bundle
 ==========================================
