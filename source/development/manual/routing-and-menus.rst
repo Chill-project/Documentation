@@ -10,9 +10,9 @@ Routing and menus
 *****************
 
 
-The _Chill_'s architecture allows to choose bundle on each installation. This may lead to a huge diversity of installations, and a the developper challenge is to make his code working with all those possibles installations.
+The *Chill*'s architecture allows to choose bundle on each installation. This may lead to a huge diversity of installations, and a the developper challenge is to make his code working with all those possibles installations.
 
-_Chill_ uses menus to let users access easily to the most used functionalities. For instance, when you land on a "Person" page, you may access directly to his activities, notes, documents, ... in a single click on a side menu.
+*Chill* uses menus to let users access easily to the most used functionalities. For instance, when you land on a "Person" page, you may access directly to his activities, notes, documents, ... in a single click on a side menu.
 
 For a developer, it is easy to extend this menu with his own entries.
 
