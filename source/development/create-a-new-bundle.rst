@@ -27,4 +27,6 @@ The easiest way to achieve this is seems to be :
 TODO
 
 
+.. rubric:: Footnotes
+
 .. [#f1] Be aware that we use the Affero GPL Licence, which ensure that all users must have access to derivative works done with this software.
