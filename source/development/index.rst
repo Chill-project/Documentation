@@ -17,6 +17,7 @@ As Chill rely on the `symfony <http://symfony.com>`_ framework, reading the fram
     Install Chill for development <installation.rst>
     Instructions to create a new bundle <create-a-new-bundle.rst>
     Bundles and tests <make-test-working.rst>
+    manual/index.rst
 
 
 Help, I am lost !
