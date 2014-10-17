@@ -89,7 +89,7 @@ Create your Chill project using composer:
 
 .. code-block:: bash
 
-   php composer.phar create-project champs-libres/chill-standard \
+   php composer.phar create-project chill-project/standard \
      path/to/your/directory --stability=dev
 
 .. note::
