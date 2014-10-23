@@ -26,7 +26,7 @@ At first, You should add the `--prefer-source` argument when you create project.
 
 .. code-block:: bash
 
-   php composer.phar create-project champs-libres/chill-standard \
+   php composer.phar create-project chill-project/standard \
      path/to/your/directory --stability=dev --prefer-source
 
 Secondly, if composer ask you the following question : ::
@@ -39,12 +39,12 @@ This will install a project. All downloaded modules will be stored in the `/vend
 
 .. code-block:: bash
 
-    $ cd vendor/champs-libres/chill-main/
+    $ cd vendor/chill-project/main/
     $ git remote -v
-    composer	git://github.com/Champs-Libres/ChillMain.git (fetch)
-    composer	git://github.com/Champs-Libres/ChillMain.git (push)
-    origin	git://github.com/Champs-Libres/ChillMain.git (fetch)
-    origin	git@github.com:Champs-Libres/ChillMain.git (push)
+    composer   git://github.com/Chill-project/Standard.git (fetch)
+    composer   git://github.com/Chill-project/Standard.git (push)
+    origin     git://github.com/Chill-project/Standard.git (fetch)
+    origin     git@github.com:Chill-project/Standard.git (push)
 
 Working with your own fork
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -100,7 +100,7 @@ The command `composer status` (`see composer documentation <https://getcomposer.
     $ cd ./../../ #back to the root project directory
     $ composer status
     You have changes in the following dependencies:
-    /path/to/your/project/install/vendor/champs-libres/chill-main
+    /path/to/your/project/install/vendor/chill-project/main
     Use --verbose (-v) to see modified files
 
 
