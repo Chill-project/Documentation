@@ -113,6 +113,10 @@ If composer ask you the following question : ::
 
 You may answer `Y` (Yes), or simply press the `return` button.
 
+
+TODO insert 'check.php'
+
+
 Launch your server
 ^^^^^^^^^^^^^^^^^^
 
