@@ -119,5 +119,5 @@ Caveats
 Currently, you may pass arguments globally to each menu, and they will be all passed to route url. This means that :
 
 * the argument name in the route entry must match the argument key in menu declaration in twig template
-* if an argument is missing to generate an url, the url generator will throw an error
+* if an argument is missing to generate an url, the url generator will throw a `Symfony\Component\Routing\Exception\MissingMandatoryParametersException`
 * if the argument name is not declared in route entry, it will be added to the url, (example: `/my/route?additional=foo`)
