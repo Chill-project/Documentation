@@ -149,7 +149,7 @@ This file boostrap the app. It contains three functions. This is the file used i
         {   
             return array(
                 new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
-                new \CL\Chill\MainBundle\CLChillMainBundle(),
+                new Chill\MainBundle\ChillMainBundle(),
                 new Symfony\Bundle\SecurityBundle\SecurityBundle(),
                 new Symfony\Bundle\TwigBundle\TwigBundle(),
                 new \Symfony\Bundle\AsseticBundle\AsseticBundle(),
