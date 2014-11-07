@@ -228,4 +228,4 @@ You should add there all routing information needed for your bundle.
     chill_main_bundle:
       resource: "@CLChillMainBundle/Resources/config/routing.yml"
 
-That's it. Tests should not pass.
+That's it. Tests should pass.
