@@ -167,7 +167,7 @@ This file boostrap the app. It contains three functions. This is the file used i
          */
         public function getCacheDir()
         {   
-            return sys_get_temp_dir().'/AcmeHelloBundle/cache';
+            return sys_get_temp_dir().'/ChillMainBundle/cache';
         }   
 
         /** 
@@ -175,7 +175,7 @@ This file boostrap the app. It contains three functions. This is the file used i
          */
         public function getLogDir()
         {   
-            return sys_get_temp_dir().'/AcmeHelloBundle/logs';
+            return sys_get_temp_dir().'/ChillMainBundle/logs';
         }   
     }
 
