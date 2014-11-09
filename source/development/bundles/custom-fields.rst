@@ -93,7 +93,7 @@ Declare your customizable class in configuration
 Two methods are available :
 
 * In your app/config.yml file. This is the easiest method, but discouraged because it will reduce the ease for installation.
-* In your Configuration class
+* In your Extension class : harder for devs, easier for installers.
 
 In app/config.yml file
 """"""""""""""""""""""
@@ -103,11 +103,77 @@ Add those file under `chill_custom_fields` section :
 .. code-block:: yaml
 
    chill_custom_fields:
-      customizables_class:
+      customizables_entities:
          - { class: Chill\CustomFieldsBundle\Entity\BlopEntity, name: blop_entity }
          
 * The `name` allow you to define a string which is translatable. This string will appears when chill's admin will add/retrieve new customFieldsGroup.
 * The class, which is a full FQDN class path
+
+Automatically, in DepedencyInjection/Extension class
+""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+.. todo::
+
+   Explain how to declare customizable entitites in DepedencyInjection/Extension.
+
+Rendering custom fields in a template
+--------------------------------------
+
+.. todo::
+
+   Develop
+
+
+Custom Fields's form
+---------------------
+
+You should simply use the 'custom_field' type in a template, with the group you would like to render in the `group` option
+
+Example : 
+
+.. warning::
+
+   The above code isn't tested.
+
+.. todo:: 
+
+   Test the above code.
+
+.. code-block:: php
+
+   use Symfony\Component\Form\AbstractType;
+   use Symfony\Component\Form\FormBuilderInterface;
+   use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+   use Chill\CustomFieldsBundle\Form\Type\CustomFieldType;
+   use Chill\CustomFieldsBundle\Entity\CustomFieldsGroup;
+
+   class BlopEntityType extends AbstractType
+   {
+
+      public $group;
+
+      public function __construct(CustomFieldsGroup $group)
+      {
+         $this->group = $group;
+      }
+
+
+       /**
+        * @param FormBuilderInterface $builder
+        * @param array $options
+        */
+      public function buildForm(FormBuilderInterface $builder, array $options)
+      {
+         $builder
+            ->add('field1')
+            ->add('field2')
+            //->add('adress', new AdressType())
+            ->add('customField', 'custom_field', array('group' => $group))
+           ;
+       }
+   }
+
+
 
 
 Development tips
