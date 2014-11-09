@@ -334,6 +334,12 @@ epub_exclude_files = ['search.html']
 # on_rtd is whether we are on readthedocs.org, this line of code grabbed from docs.readthedocs.org
 on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
 
+#-- Options for todo
+
+todo_include_todos = True
+
+#-- include template if not on RTD
+
 if not on_rtd:  # only import and set the theme if we're building docs locally
     import sphinx_rtd_theme
     html_theme = 'sphinx_rtd_theme'
