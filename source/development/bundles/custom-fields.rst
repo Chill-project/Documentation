@@ -110,6 +110,20 @@ Add those file under `chill_custom_fields` section :
 * The class, which is a full FQDN class path
 
 
+Development tips
+-----------------
+
+If you want to test the rendering of a custom fields group, you may use this method :
+
+1. Run the built-in server **from the custom-fields directory** :
+
+.. code-block:: bash
+
+   ./run-server.sh
+
+2. assuming that your custom fields id is `1`, go to your navigator and enter url : `http://localhost:8000/customfieldsgroup/test/render/2`
+
+
 
 
 .. glossary::
