@@ -37,6 +37,11 @@ Contribute
    * Chill-standard : https://github.com/Champs-Libres/chill-standard
    * Chill-main : https://github.com/Champs-Libres/ChillMain
 
+TODO in documentation
+=====================
+
+.. todolist::
+
 Licence
 ========
 
