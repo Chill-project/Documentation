@@ -121,7 +121,7 @@ If you want to test the rendering of a custom fields group, you may use this met
 
    ./run-server.sh
 
-2. assuming that your custom fields id is `1`, go to your navigator and enter url : `http://localhost:8000/customfieldsgroup/test/render/2`
+2. assuming that your custom fields id is `1`, go to your navigator and enter url : `http://localhost:8000/customfieldsgroup/test/render/1`
 
 
 
