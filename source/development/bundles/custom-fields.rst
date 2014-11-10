@@ -119,9 +119,49 @@ Automatically, in DepedencyInjection/Extension class
 Rendering custom fields in a template
 --------------------------------------
 
-.. todo::
+Two function are available :
 
-   Develop
+* `chill_custom_field_widget` to render the widget. This function is defined on a customFieldType basis.
+* `chill_custom_field_label` to render the label. You can customize the label rendering by choosing the layout you would like to use.
+
+**chill_custom_field_label**
+
+The signature is :
+
+* `CustomField|object|string` **$customFieldOrClass** either a customField OR a customizable_entity OR the FQDN of the entity
+*  `string` **$slug** only necessary if the first argument is NOT a CustomField instance
+* `array` **params** the parameters for rendering. Currently, 'label_layout' allow to choose a different label. Default is 'ChillCustomFieldsBundle:CustomField:render_label.html.twig'
+
+Examples
+
+.. code-block:: jinja
+
+   {{ chill_custom_field_label(customField) }}
+
+   {{ chill_custom_field_label(entity, 'slug') }}
+
+   {{ chill_custom_field_label('Path\To\Entity', 'slug') }}
+
+
+**chill_custom_field_widget**
+
+*  array **$fields** the array raw, as stored in the db
+*  CustomField|object|string $customFieldOrClass either a customField OR a customizable_entity OR the FQDN of the entity
+*  string **$slug** only necessary if the first argument is NOT a CustomField instance
+
+Examples:
+
+.. code-block:: jinja
+
+   {{ chill_custom_field_widget(entity.customFields, customField) }}
+
+   {{ chill_custom_field_widget(entity.customFields, entity, 'slug') }}
+
+   {{ chill_custom_field_widget(fields, 'Path\To\Entity', 'slug') }}
+
+.. warning::
+
+   This feature is not fully tested. See `the corresponding issue <https://redmine.champs-libres.coop/issues/283>`_
 
 
 Custom Fields's form
