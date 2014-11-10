@@ -46,6 +46,37 @@ This will install a project. All downloaded modules will be stored in the `/vend
     origin     git://github.com/Chill-project/Standard.git (fetch)
     origin     git@github.com:Chill-project/Standard.git (push)
 
+Deleted and added files after installation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Composer will deleted unrequired files, and add some of them. This perfectly normal and will appears in your git index. But you should NOT delete those files.
+
+
+This should appears : 
+
+.. code-block:: bash
+
+    $git status
+      #(...)
+
+      Modifications qui ne seront pas validées :
+        (utilisez "git add/rm <fichier>..." pour mettre à jour ce qui sera validé)
+        (utilisez "git checkout -- <fichier>..." pour annuler les modifications dans la copie de travail)
+
+	      modifié:         app/SymfonyRequirements.php
+	      supprimé:        app/SymfonyStandard/Composer.php
+	      supprimé:        app/SymfonyStandard/RootPackageInstallSubscriber.php
+	      modifié:         app/check.php
+
+You can ignore the locally using the `git update-index --assume-unchanged` command.
+
+.. code-block:: bash
+
+   $ git update-index --assume-unchanged app/check.php
+   $ git update-index --assume-unchanged app/SymfonyRequirements.php
+   $ git update-index --assume-unchanged app/SymfonyStandard/Composer.php
+   $ git update-index --assume-unchanged app/SymfonyStandard/RootPackageInstallSuscriber.php
+
 Working with your own fork
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
