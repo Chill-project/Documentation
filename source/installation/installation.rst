@@ -125,7 +125,9 @@ You may accept the default parameters of `debug_toolbar`, `debug_redirects` and 
 
    At the end of your installation, composer will warn you to execute database migration script, with this message : ::
 
-     Some migration files have been imported. You should run `php app/console doctrine:migrations:status` and/or `php app/console doctrine:migrations:migrate` to apply them to your DB.
+     Some migration files have been imported. You should run 
+     `php app/console doctrine:migrations:status` and/or 
+     `php app/console doctrine:migrations:migrate` to apply them to your DB.
 
    We will proceed to this step some steps further. See :ref:`create-database-schema`.
 
