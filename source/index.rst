@@ -23,8 +23,7 @@ Contents of this documentation:
 .. toctree::
    :maxdepth: 2
 
-   installation/installation.rst
-   installation/install_new_bundles.rst
+   installation/index.rst
    development/index.rst
 
 

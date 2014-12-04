@@ -92,6 +92,12 @@ Create your Chill project using composer:
    php composer.phar create-project chill-project/standard \
      path/to/your/directory --stability=dev
 
+You should, now, move your cursor to the new directory
+
+.. code-block:: bash
+
+   cd path/to/your/directory
+
 .. note::
    Until now, the stability of the project is set to "dev". Do not forget this argument, or composer will fail to download and create the project.
 
@@ -170,7 +176,6 @@ If everything was fine, you are able to launch your built-in server :
 
 .. code-block:: bash
 
-   cd path/to/your/directory
    php app/console server:run
 
 Your server should now be available at `http://localhost:8000`. Type this address on your browser and you should see the homepage. 
