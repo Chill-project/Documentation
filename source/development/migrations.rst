@@ -56,7 +56,7 @@ Updating migration files
 
 .. warning::
 
-   After an installation, migration files will be executed and registered as executed in the database (the version timestamp is recorded into the :title:`migrations_versions` table). If you update your migration file code, the file will still be considered as "executed" by doctrine migration, which will never recommand users to execute the migration again.
+   After an installation, migration files will be executed and registered as executed in the database (the version timestamp is recorded into the :title:`migrations_versions` table). If you update your migration file code, the file will still be considered as "executed" by doctrine migration, which will not offers the possibility to run the migration again.
 
    Consequently, updating migration file should only be considered during development phase, and not published on public git branches. If you want to edit your database schema, you should create a new migration file, with a new timestamp, which will proceed to your schema adaptations.
 
@@ -73,6 +73,11 @@ Every time a migration file is discovered, the composer'script will check if the
 
 Tips for development
 ====================
+
+Migration and data 
+------------------
+
+Each time you create a migration script, you should ensure that it will not lead to data losing. Eventually, feel free to use intermediate steps.
 
 Generation
 ----------
