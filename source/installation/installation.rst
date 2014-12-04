@@ -107,11 +107,21 @@ Composer will download `the standard architecture`_ and ask you a few question a
 
 You may accept the default parameters of `debug_toolbar`, `debug_redirects` and `use_assetic_controller` for a demonstration installation. For production, set them all to `false`.
 
-If composer ask you the following question : ::
+.. note::
 
-  Do you want to remove the existing VCS (.git, .svn..) history? [Y,n]?
+   If composer ask you the following question : ::
 
-You may answer `Y` (Yes), or simply press the `return` button.
+     Do you want to remove the existing VCS (.git, .svn..) history? [Y,n]?
+
+   You may answer `Y` (Yes), or simply press the `return` button.
+
+.. note::
+
+   At the end of your installation, composer will warn you to execute database migration script, with this message : ::
+
+     Some migration files have been imported. You should run `php app/console doctrine:migrations:status` and/or `php app/console doctrine:migrations:migrate` to apply them to your DB.
+
+   We will proceed to this step some steps further. See :ref:`create-database-schema`.
 
 Check your requirements
 ^^^^^^^^^^^^^^^^^^^^^^^
@@ -124,6 +134,34 @@ You should check your installation by running
 
 Which will give you information about how your installation fullfill the requirements to running Chill, and give you advices to optimize your installation.
 
+
+.. _create-database-schema:
+
+Create your database schema
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This step will create your table and minimum information into your database. Simply run 
+
+.. code-block:: bash
+
+   php app/console doctrine:migrations:migrate
+
+SQL queries will be printed into your console.
+
+
+Populate your database with basic information
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Once your database schema is ready, you should populate your database with some basic information. Those are provided through scripts and might depends from the bundle you choose to install (see :ref:`install-new-bundles`)
+
+The main bundle require two scripts to be executed : 
+
+.. code-block:: bash
+
+   php app/console chill:main:countries:populate 
+   php app/console chill:main:languages:populate
+
+Those will populate database, respectively, with countries (using ISO declaration) and languages (using, also, ISO informations).
 
 Launch your server
 ^^^^^^^^^^^^^^^^^^

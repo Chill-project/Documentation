@@ -24,6 +24,7 @@ Contents of this documentation:
    :maxdepth: 2
 
    installation/installation.rst
+   installation/install_new_bundles.rst
    development/index.rst
 
 
