@@ -113,8 +113,16 @@ If composer ask you the following question : ::
 
 You may answer `Y` (Yes), or simply press the `return` button.
 
+Check your requirements
+^^^^^^^^^^^^^^^^^^^^^^^
 
-TODO insert 'check.php'
+You should check your installation by running 
+
+.. code-block:: bash
+
+   php app/check.php
+
+Which will give you information about how your installation fullfill the requirements to running Chill, and give you advices to optimize your installation.
 
 
 Launch your server
