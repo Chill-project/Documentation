@@ -80,10 +80,6 @@ You can ignore the locally using the `git update-index --assume-unchanged` comma
 Working with your own fork
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. warning::
-
-    This section has not been tested yet. Feedback wanted.
-
 Ideally, you will work on a fork of the main github repository. To ensure that composer will download the code from **your** repository, you will have to adapt the `composer.json` file accordingly, using your own repository. 
 
 Add the following lines to your composer.json file if you want to force composer to download from your own repository. This will force to use your own repository for the ChillMain bundle, insert in `composer.json` the following lines : 
