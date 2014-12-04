@@ -36,7 +36,7 @@ You won't need any web server for demonstration or development.
 Client requirements
 ^^^^^^^^^^^^^^^^^^^
 
-Chill is accessible through a web browser. Currently, we focus our support on `Firefox`_, because firefox is open source, cross-platform, and very well active. The software should work with other browser (Chromium, Opera, ...) but some functionalities should break.
+Chill is accessible through a web browser. Currently, we focus our support on `Firefox`_, because firefox is open source, cross-platform, and very well active. The software should work with other browser (Chromium, Opera, ...) but some functionalities might break.
 
 Preparation
 -----------
@@ -63,7 +63,7 @@ Install composer on your system :
 
    curl -sS https://getcomposer.org/installer | php
 
-move composer.phar to your system 
+Move composer.phar to your system 
 """""""""""""""""""""""""""""""""
 
 .. note::
