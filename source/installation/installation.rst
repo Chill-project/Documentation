@@ -25,13 +25,17 @@ Requirements
 Server requirements
 ^^^^^^^^^^^^^^^^^^^^
 
-* a postgresql database. The minimum version is postgresql 9.3, but we are working on developing on the 9.4 branch, which will provide features which will ease developper work
+* a postgresql database, with the `*unaccent* extension`_ enabled. The minimum version is postgresql 9.3, but we are working on developing on the 9.4 branch, which will provide features which will ease developper work
 * php 5.5
 * If you run Chill in production mode, you should also install a web server (apache, ngnix, ...). We may use php built-in server for testing and development.
 
 Within this documentation, we are going to describe installation on Unix systems (Unix, Mac OS). Windows installation ha not been tested yet.
 
 You won't need any web server for demonstration or development.
+
+.. note::
+
+   Installing unaccent extension on ther server is possible with the package `postgresql-contrib-9.x` (replace 9.x with your server version). The extension may be enabled with running `CREATE EXTENSION unaccent;` in the database, with a superuser account.
 
 Client requirements
 ^^^^^^^^^^^^^^^^^^^
@@ -188,3 +192,4 @@ Your server should now be available at `http://localhost:8000`. Type this addres
 .. _composer: https://getcomposer.org
 .. _Firefox: https://www.mozilla.org
 .. _symfony framework: http://symfony.com
+.. _*unaccent* extension: http://www.postgresql.org/docs/current/static/unaccent.html
