@@ -12,5 +12,6 @@ Official bundles documentation
 .. toctree::
     :maxdepth: 2
 
-    Main Bundle <main.rst>
-    Custom Fields <custom-fields.rst>
+    Main bundle <main.rst>
+    Custom Fields bundle <custom-fields.rst>
+    Person bundle <person.rst>
