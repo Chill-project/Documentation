@@ -25,6 +25,7 @@ Contents of this documentation:
 
    installation/index.rst
    development/index.rst
+   Bundles <bundles/index.rst>
 
 
 Contribute

@@ -6,8 +6,10 @@
    A copy of the license is included in the section entitled "GNU
    Free Documentation License".
 
-Official bundles documentation
+Bundles documentation
 ###############################
+
+You will find here documentation about bundles working with Chill.
 
 .. toctree::
     :maxdepth: 2
@@ -15,3 +17,8 @@ Official bundles documentation
     Main bundle <main.rst>
     Custom Fields bundle <custom-fields.rst>
     Person bundle <person.rst>
+
+Your bundle here ?
+-------------------
+
+The contributors still do not have a policy about those bundle integration, but we would like to be very open on this subject. Please write to us `or open an issue <https://redmine.champs-libres.coop/projects/chill/issues>`_.
