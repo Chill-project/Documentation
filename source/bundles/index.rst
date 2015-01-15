@@ -17,6 +17,7 @@ You will find here documentation about bundles working with Chill.
     Main bundle <main.rst>
     Custom Fields bundle <custom-fields.rst>
     Person bundle <person.rst>
+    Report bundle <report.rst>
 
 Your bundle here ?
 -------------------
