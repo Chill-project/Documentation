@@ -7,9 +7,12 @@
    Free Documentation License".
    
 Person bundle
-###########
+#############
 
-This bundle provides the ability to record people in the software. This bundle is required by other bundle
+This bundle provides the ability to record people in the software. This bundle is required by other bundle.
+
+.. contents:: Table of content
+   :local:
 
 Entities provided
 *****************
@@ -35,7 +38,7 @@ The search upon "person" is provided by default. The `@person` domain search may
 Arguments
 =========
 
-* `firstname` : provide the search on firstname. Example : `firstname:Depardieu`. May match part of the firstname (`firsname:dep` will match **Dep**ardieu)
+* `firstname` : provide the search on firstname. Example : `firstname:Depardieu`. May match part of the firstname (`firsname:dep` will match Depardieu)
 * `lastname` : provide the search on lastname. May match part of the lastname.
 * `birthdate` : provide the search on the birthdate. Example : `birthdate:1996-01-19`
 * `gender`: performs search on man/woman. The accepted values are `man` or `woman`.
@@ -44,4 +47,4 @@ Arguments
 Default
 =======
 
-The default search is performed on firstname and/or lastname. Both are concatened before search. If values are separated by spaces, the clause `AND` is used : the search `dep ge` will match '**Gé**rard **Dep**ardieu` or 'Jean **Dep**a**ge**lles', but not 'Charline **Dep**ardieu' (missing 'Ge' in word).
+The default search is performed on firstname and/or lastname. Both are concatened before search. If values are separated by spaces, the clause `AND` is used : the search `dep ge` will match 'Gérard Depardieu` or 'Jean Depagelles', but not 'Charline Depardieu' (missing 'Ge' in word).
