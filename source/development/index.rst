@@ -19,6 +19,7 @@ As Chill rely on the `symfony <http://symfony.com>`_ framework, reading the fram
     Routing <routing.rst>
     Menus <menus.rst>
     Message to users <flashbags.rst>
+    Localisation <localisation.rst>
     Database migrations <migrations.rst>
     Searching <searching.rst>
     Testing <make-test-working.rst>
