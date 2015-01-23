@@ -9,6 +9,26 @@
 Localisation
 *************
 
+Language in url
+===============
+
+Language should be present in URL, conventionnaly as first argument. 
+
+.. code-block:: none
+
+   /fr/your/url/here
+
+This allow users to change from one language to another one on each page, which may be useful in multilanguages teams. If the installation is single-language, the language switcher will not appears.
+
+This is an example of routing defined in yaml : 
+
+.. code-block:: yaml
+
+   chill_person_general_edit:
+       pattern: /{_locale}/person/{person_id}/general/edit
+       defaults: {_controller: ChillPersonBundle:Person:edit }
+
+
 Date and time
 ==============
 
