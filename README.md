@@ -11,7 +11,7 @@ Compilation into HTML
 
 To compile this documentation :
 
-1. Install [sphinx-doc](http://sphinx-doc.org)
+1. Install [sphinx-doc](http://sphinx-doc.org) (eg. pip install sphinx &  pip install sphinx_rtd_theme)
 2. run `make html` from the root directory
 3. The base file is located on build/html/index.html
 
