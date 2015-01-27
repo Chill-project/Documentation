@@ -23,8 +23,9 @@ Contents of this documentation:
 .. toctree::
    :maxdepth: 2
 
-   installation/installation.rst
+   installation/index.rst
    development/index.rst
+   Bundles <bundles/index.rst>
 
 
 Contribute
@@ -36,6 +37,11 @@ Contribute
 
    * Chill-standard : https://github.com/Champs-Libres/chill-standard
    * Chill-main : https://github.com/Champs-Libres/ChillMain
+
+TODO in documentation
+=====================
+
+.. todolist::
 
 Licence
 ========
