@@ -182,7 +182,7 @@ This file boostrap the app. It contains three functions. This is the file used i
 config_test.yml
 ---------------
 
-There are only few parameters required for the config file. This is the config file for ChillMain :
+There are only few parameters required for the config file. This is a basic version for ChillMain :
 
 .. code-block:: yaml
 
@@ -228,4 +228,4 @@ You should add there all routing information needed for your bundle.
     chill_main_bundle:
       resource: "@CLChillMainBundle/Resources/config/routing.yml"
 
-That's it. Tests should not pass.
+That's it. Tests should pass.
