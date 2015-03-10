@@ -24,14 +24,27 @@ In the database, custom fields are stored in json format.
 Custom Fields concepts
 ----------------------
 
-.. warning::
+Custom fields are extra data which may be added to entities by user. If a developer implements custom fields on a entity, users will be able to add more fields on this entity.
 
-   This section is incomplete
+Example: the `person bundle` allow to record `firstname`, `lastname`, `date of birth` fields. But users need to store information about the kind of house he has (if he owns his house, if he rents it, ...). Custom fields allow to create those fields.
+
+Automatically, those fields are added at the person form. They are also printed in the person view and in exports.
+
+Custom fields and custom fields group
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Custom fields are associated to a custom fields group. When a user want to add custom fields on an entity, he must first create a custom fields group and associate this field with an entity. Then he may add add custom fields to this groups. 
+
+Some entities needs a **default** custom fields group. For instance, the default custom fields group will be printed on the main form for person, and will be appended on the main person view. Some bundle does not use this feature (i.e. the `report` bundle).
+
+.. note::
+
+   In the future of the `person bundle`, other custom fields group will be added in forms accessible from the menu, allowing users to completely customize and separate their entities.
    
 Allow custom fields on a entity
 --------------------------------
 
-As a developer, you may allow your users to add custom fields on your entities.
+As a developer, you must allow your users to add custom fields on your entities.
 
 Create a json field on your entity
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -47,7 +60,7 @@ Declare a json field in your database :
          customField:
             type: json_array
             
-Create the field accordingly :
+Create the field accordingly in the class logic :
 
 .. code-block:: php
 
@@ -65,8 +78,8 @@ Create the field accordingly :
    private $customField = array();
    
    /**
-   * This method will be required for the Form component to record the 
-   * custom fields into the class
+   * You must set a setter in order to save automatically custom 
+   * fields from forms, using Form Component
    *
    * @param array $customField
    * @return BlopEntity
@@ -78,7 +91,8 @@ Create the field accordingly :
    }
    
    /**
-   * Required by Forms to retrieve informations
+   * You also must create a getter in order to let Form 
+   * component populate form fields
    *
    * @return array
    */
@@ -87,13 +101,15 @@ Create the field accordingly :
       return $this->customField;
    }
             
-Declare your customizable class in configuration
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Declare your customizable entity in configuration
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This step is necessary to allow user to create custom fields group associated with this entity.
 
 Two methods are available :
 
 * In your app/config.yml file. This is the easiest method, but discouraged because it will reduce the ease for installation.
-* In your Extension class : harder for devs, easier for installers.
+* In your Extension class : a bit harder for devs, much easier for installers.
 
 In app/config.yml file
 """"""""""""""""""""""
@@ -109,12 +125,141 @@ Add those file under `chill_custom_fields` section :
 * The `name` allow you to define a string which is translatable. This string will appears when chill's admin will add/retrieve new customFieldsGroup.
 * The class, which is a full FQDN class path
 
-Automatically, in DepedencyInjection/Extension class
-""""""""""""""""""""""""""""""""""""""""""""""""""""
+Automatically, in DependencyInjection/Extension class
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-.. todo::
+This is the preferred way for declaring customizable classes. 
 
-   Explain how to declare customizable entitites in DepedencyInjection/Extension.
+You can prepend configuration of `custom fields bundle` from the class `YourBundle\DependencyInjection\YourBundleExtension`. **Note** that you also have to implements `Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface` on this class to make the `prepend` function being taken into account.
+
+Example here : 
+
+.. code-block:: php
+
+   class ChillReportExtension extends Extension implements PrependExtensionInterface
+   {
+       /**
+        * 
+        * 
+        * @param ContainerBuilder $container
+        */
+       public function prepend(ContainerBuilder $container)
+       {
+           $bundles = $container->getParameter('kernel.bundles');
+           if (!isset($bundles['ChillCustomFieldsBundle'])) {
+               throw new MissingBundleException('ChillCustomFieldsBundle');
+           }
+
+           $container->prependExtensionConfig('chill_custom_fields',
+               array('customizables_entities' => 
+                   array(
+                       array(
+                          'class' => 'Chill\ReportBundle\Entity\Report', 
+                          'name' => 'ReportEntity',
+                          )
+                   )
+               )
+           );
+       }
+   }
+
+.. seealso::
+
+   `How to simplify configuration of multiple bundles <http://symfony.com/doc/current/cookbook/bundles/prepend_extension.html>`_
+      A cookbook page about prepending configuration.
+
+Adding options to your custom fields groups
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+You may add options to the groups associated with an entity.
+
+In `config.yml` the declaration should be : 
+
+.. code-block:: yaml
+
+   chill_custom_fields:
+       customizables_entities:
+           - 
+               class: Chill\ReportBundle\Entity\Report
+               name: ReportEntity
+               options:
+                   # this will create a "myFieldKey" field as text, with a maxlength attribute to 150 (see http://symfony.com/doc/master/reference/forms/types/text.html)
+                   myFieldKey: {form_type: text, form_options: {attr: [maxlength: 150]}} 
+
+In the `PrependExtensionInterface::prepend` function, the options key will be added in the configuration definition : 
+
+.. code-block:: php
+
+   class ChillReportExtension extends Extension implements PrependExtensionInterface
+   {
+       /**
+        * 
+        * 
+        * @param ContainerBuilder $container
+        */
+       public function prepend(ContainerBuilder $container)
+       {
+           $bundles = $container->getParameter('kernel.bundles');
+           if (!isset($bundles['ChillCustomFieldsBundle'])) {
+               throw new MissingBundleException('ChillCustomFieldsBundle');
+           }
+
+           $container->prependExtensionConfig('chill_custom_fields',
+               array('customizables_entities' => 
+                   array(
+                       array(
+                          'class' => 'Chill\ReportBundle\Entity\Report', 
+                          'name' => 'ReportEntity',
+                          'options' => array(
+                                'myFieldKey' => [ 'form_type' => 'text', 'form_options' => [ 'attr' => [ 'maxlength' => 150 ] ]
+                          ))
+                   )
+               )
+           );
+       }
+   }
+               
+**Example :** the entity `Report` from **ReportBundle** has to pick some custom fields belonging to a group to print them in *summaries* the timeline page. The definition will use the special type `custom_fields_group_linked_custom_field` which will add a select input with all fields associated with the current custom fields group : 
+
+.. code-block:: php
+
+   class ChillReportExtension extends Extension implements PrependExtensionInterface
+   {
+       /**
+        * 
+        * 
+        * @param ContainerBuilder $container
+        */
+       public function prepend(ContainerBuilder $container)
+       {
+           $bundles = $container->getParameter('kernel.bundles');
+           if (!isset($bundles['ChillCustomFieldsBundle'])) {
+               throw new MissingBundleException('ChillCustomFieldsBundle');
+           }
+
+           $container->prependExtensionConfig('chill_custom_fields',
+               array('customizables_entities' => 
+                   array(
+                       array(
+                          'class' => 'Chill\ReportBundle\Entity\Report', 
+                          'name' => 'ReportEntity',
+                          'options' => array(
+                             'summary_fields' => array(
+                                'form_type' => 'custom_fields_group_linked_custom_fields',
+                                'form_options' => 
+                                   [
+                                      'multiple' => true,
+                                      'expanded' => false
+                                   ]
+                             )
+                          ))
+                   )
+               )
+           );
+       }
+   }
+
+Note that `custom_fields_group_linked_custom_fields` does not create any input on `CustomFieldsGroup` creation : there aren't any fields associated with the custom fields just after the group creation... You have to add custom fields and associate them with the newly created group to see them appears.
 
 Rendering custom fields in a template
 --------------------------------------
@@ -167,49 +312,64 @@ Examples:
 Custom Fields's form
 ---------------------
 
-You should simply use the 'custom_field' type in a template, with the group you would like to render in the `group` option
+You should simply use the 'custom_field' type in a template, with the group you would like to render in the `group` option's type.
 
 Example : 
 
-.. warning::
-
-   The above code isn't tested.
-
-.. todo:: 
-
-   Test the above code.
-
 .. code-block:: php
+
+   namespace Chill\ReportBundle\Form;
 
    use Symfony\Component\Form\AbstractType;
    use Symfony\Component\Form\FormBuilderInterface;
    use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-   use Chill\CustomFieldsBundle\Form\Type\CustomFieldType;
-   use Chill\CustomFieldsBundle\Entity\CustomFieldsGroup;
 
-   class BlopEntityType extends AbstractType
+   class ReportType extends AbstractType
    {
-
-      public $group;
-
-      public function __construct(CustomFieldsGroup $group)
-      {
-         $this->group = $group;
-      }
-
-
        /**
         * @param FormBuilderInterface $builder
         * @param array $options
         */
-      public function buildForm(FormBuilderInterface $builder, array $options)
-      {
-         $builder
-            ->add('field1')
-            ->add('field2')
-            //->add('adress', new AdressType())
-            ->add('customField', 'custom_field', array('group' => $group))
+       public function buildForm(FormBuilderInterface $builder, array $options)
+       {
+           $entityManager = $options['em'];
+
+           $builder
+               ->add('user')
+               ->add('date', 'date', 
+                   array('required' => true, 'widget' => 'single_text', 'format' => 'dd-MM-yyyy'))
+               #add the custom fields :
+               ->add('cFData', 'custom_field', 
+                   array('attr' => array('class' => 'cf-fields'), 'group' => $options['cFGroup']))
            ;
+       }
+       
+       /**
+        * @param OptionsResolverInterface $resolver
+        */
+       public function setDefaultOptions(OptionsResolverInterface $resolver)
+       {
+           $resolver->setDefaults(array(
+               'data_class' => 'Chill\ReportBundle\Entity\Report'
+           ));
+
+           $resolver->setRequired(array(
+               'em',
+               'cFGroup',
+           ));
+
+           $resolver->setAllowedTypes(array(
+               'em' => 'Doctrine\Common\Persistence\ObjectManager',
+               'cFGroup' => 'Chill\CustomFieldsBundle\Entity\CustomFieldsGroup'
+           ));
+       }
+
+       /**
+        * @return string
+        */
+       public function getName()
+       {
+           return 'chill_reportbundle_report';
        }
    }
 
@@ -229,11 +389,4 @@ If you want to test the rendering of a custom fields group, you may use this met
 
 2. assuming that your custom fields id is `1`, go to your navigator and enter url : `http://localhost:8000/customfieldsgroup/test/render/1`
 
-
-
-
-.. glossary::
-
-   customFieldsGroup
-      TODO
       
