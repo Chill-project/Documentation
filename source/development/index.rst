@@ -22,6 +22,7 @@ As Chill rely on the `symfony <http://symfony.com>`_ framework, reading the fram
     Localisation <localisation.rst>
     Database migrations <migrations.rst>
     Searching <searching.rst>
+    Timelines <timelines.rst>
     Testing <make-test-working.rst>
     manual/index.rst
 
