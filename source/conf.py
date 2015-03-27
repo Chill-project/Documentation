@@ -21,6 +21,14 @@ import os
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #sys.path.insert(0, os.path.abspath('.'))
 
+sys.path.append(os.path.abspath('./../_exts/sphinx-php'))
+
+
+# adding PhpLexer
+from sphinx.highlighting import lexers
+from pygments.lexers.compiled import CLexer
+from pygments.lexers.web import PhpLexer
+
 # -- General configuration ------------------------------------------------
 
 # If your documentation needs a minimal Sphinx version, state it here.
@@ -31,7 +39,11 @@ import os
 # ones.
 extensions = [
     'sphinx.ext.autodoc',
-    'sphinx.ext.todo',
+    'sphinx.ext.todo', 
+    'sensio.sphinx.refinclude',
+    'sensio.sphinx.configurationblock',
+    'sensio.sphinx.phpcode',
+    'sensio.sphinx.bestpractice',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -96,6 +108,23 @@ pygments_style = 'sphinx'
 
 # If true, keep warnings as "system message" paragraphs in the built documents.
 #keep_warnings = False
+
+# -- Settings for symfony doc extension ---------------------------------------------------
+# enable highlighting for PHP code not between ``<?php ... ?>`` by default
+lexers['php'] = PhpLexer(startinline=True)
+lexers['php-annotations'] = PhpLexer(startinline=True)
+lexers['php-standalone'] = PhpLexer(startinline=True)
+lexers['php-symfony'] = PhpLexer(startinline=True)
+lexers['varnish3'] = CLexer()
+lexers['varnish4'] = CLexer()
+config_block = {
+'varnish3': 'Varnish 3',
+'varnish4': 'Varnish 4'
+}
+# use PHP as the primary domain
+primary_domain = 'php'
+# set url for API links
+api_url = 'http://api.symfony.com/master/%s'
 
 
 # -- Options for HTML output ----------------------------------------------
