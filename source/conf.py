@@ -16,18 +16,22 @@
 import sys
 import os
 
+# on_rtd is whether we are on readthedocs.org, this line of code grabbed from docs.readthedocs.org
+on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
+
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #sys.path.insert(0, os.path.abspath('.'))
 
-sys.path.append(os.path.abspath('./../_exts/sphinx-php'))
+if not on_rtd:
+    sys.path.append(os.path.abspath('./../_exts/sphinx-php'))
 
 
-# adding PhpLexer
-from sphinx.highlighting import lexers
-from pygments.lexers.compiled import CLexer
-from pygments.lexers.web import PhpLexer
+    # adding PhpLexer
+    from sphinx.highlighting import lexers
+    from pygments.lexers.compiled import CLexer
+    from pygments.lexers.web import PhpLexer
 
 # -- General configuration ------------------------------------------------
 
@@ -40,11 +44,15 @@ from pygments.lexers.web import PhpLexer
 extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.todo', 
+]
+
+if not on_rtd:
+    extensions += [
     'sensio.sphinx.refinclude',
     'sensio.sphinx.configurationblock',
     'sensio.sphinx.phpcode',
     'sensio.sphinx.bestpractice',
-]
+    ]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -110,21 +118,22 @@ pygments_style = 'sphinx'
 #keep_warnings = False
 
 # -- Settings for symfony doc extension ---------------------------------------------------
-# enable highlighting for PHP code not between ``<?php ... ?>`` by default
-lexers['php'] = PhpLexer(startinline=True)
-lexers['php-annotations'] = PhpLexer(startinline=True)
-lexers['php-standalone'] = PhpLexer(startinline=True)
-lexers['php-symfony'] = PhpLexer(startinline=True)
-lexers['varnish3'] = CLexer()
-lexers['varnish4'] = CLexer()
-config_block = {
-'varnish3': 'Varnish 3',
-'varnish4': 'Varnish 4'
-}
-# use PHP as the primary domain
-primary_domain = 'php'
-# set url for API links
-api_url = 'http://api.symfony.com/master/%s'
+if not on_rtd:
+    # enable highlighting for PHP code not between ``<?php ... ?>`` by default
+    lexers['php'] = PhpLexer(startinline=True)
+    lexers['php-annotations'] = PhpLexer(startinline=True)
+    lexers['php-standalone'] = PhpLexer(startinline=True)
+    lexers['php-symfony'] = PhpLexer(startinline=True)
+    lexers['varnish3'] = CLexer()
+    lexers['varnish4'] = CLexer()
+    config_block = {
+    'varnish3': 'Varnish 3',
+    'varnish4': 'Varnish 4'
+    }
+    # use PHP as the primary domain
+    primary_domain = 'php'
+    # set url for API links
+    api_url = 'http://api.symfony.com/master/%s'
 
 
 # -- Options for HTML output ----------------------------------------------
@@ -360,8 +369,7 @@ epub_exclude_files = ['search.html']
 # If false, no index is generated.
 #epub_use_index = True
 
-# on_rtd is whether we are on readthedocs.org, this line of code grabbed from docs.readthedocs.org
-on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
+
 
 #-- Options for todo
 
