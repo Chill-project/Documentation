@@ -25,17 +25,37 @@ Requirements
 Server requirements
 ^^^^^^^^^^^^^^^^^^^^
 
-* a postgresql database, with the `*unaccent* extension`_ enabled. The minimum version is postgresql 9.3, but we are working on developing on the 9.4 branch, which will provide features which will ease developper work
+* a postgresql database, with the `*unaccent* extension`_ enabled. The minimum version is postgresql 9.4. Alternatively, you can use `the docker image provided <https://registry.hub.docker.com/u/chill/database/>`_ (see notes above)
 * php 5.5
 * If you run Chill in production mode, you should also install a web server (apache, ngnix, ...). We may use php built-in server for testing and development.
 
-Within this documentation, we are going to describe installation on Unix systems (Unix, Mac OS). Windows installation ha not been tested yet.
+Within this documentation, we are going to describe installation on Unix systems (Unix, Mac OS). Windows installation ha not been tested.
 
-You won't need any web server for demonstration or development.
+You won't need any web server for setting up an instance for a demonstration or development.
 
 .. note::
 
    Installing unaccent extension on ther server is possible with the package `postgresql-contrib-9.x` (replace 9.x with your server version). The extension may be enabled with running `CREATE EXTENSION unaccent;` in the database, with a superuser account.
+
+.. note:: 
+
+   To avoid installation and configuration of a postgresql server, you may use `our docker image <https://registry.hub.docker.com/u/chill/database/>`_ to start and configure a database.
+
+   After `docker installation <http://docs.docker.com/>`_, run : 
+
+   .. code-block:: bash
+
+      sudo docker run -P --name=chill_db chill/database
+
+   This will download the chill/database image and start a new docker instance with the name `chill_db` and export the postgresql port `5432` on another random local port. 
+
+   In a new terminal, run 
+
+   .. code-block:: bash
+
+      sudo docker port chill_db 5432 
+
+   This command will show on which port the docker container is listening, on your localhost. During the part :ref:`create-your-project` fill this port, and the address of the container (`localhost` or `127.0.0.1`). 
 
 Client requirements
 ^^^^^^^^^^^^^^^^^^^
@@ -85,6 +105,8 @@ You can test the installation by running `which composer` or `composer`: those c
 
 .. note::
    See `the composer introduction`_ to learn how to install composer on Mac OS X and Windows
+
+.. _create-your-project:
 
 Create your project
 ^^^^^^^^^^^^^^^^^^^
