@@ -201,10 +201,13 @@ Those will populate database, respectively, with countries (using ISO declaratio
 Building CSS (optionnal)
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
+For this step, npm must be installed.
+
 A build version of the needed CSS file is provided within the main bundle `Resources/public/css/chillmain.css`. For rebuilding it :
 
 
 .. code-block:: bash
+
    #in the main bundle directory ( vendor/chill-project/main/ )
    cd Resources/
    npm install
