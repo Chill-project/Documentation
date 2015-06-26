@@ -77,7 +77,6 @@ If you have installed the docker database your information should be:
     - database_user: postgres
     - database_password: postgres
     - locale: fr
-    - secret: champs-libres
 
 Installation
 ------------
