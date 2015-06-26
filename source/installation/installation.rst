@@ -217,10 +217,15 @@ A build version of the needed CSS file is provided within the main bundle `Resou
 .. code-block:: bash
 
    #in the main bundle directory ( vendor/chill-project/main/ )
-   cd Resources/
-   npm install
-   grunt
+   cd vendor/chill-project/main/Resources/
+   npm install grunt
 
+
+Go back to your project root before doing next step
+
+.. code-block:: bash
+
+   cd path/to/your/directory
 
 
 Launch your server
