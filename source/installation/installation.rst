@@ -29,7 +29,7 @@ Server requirements
 * php 5.5
 * If you run Chill in production mode, you should also install a web server (apache, ngnix, ...). We may use php built-in server for testing and development.
 
-Within this documentation, we are going to describe installation on Unix systems (Unix, Mac OS). Windows installation ha not been tested.
+Within this documentation, we are going to describe installation on Unix systems (Unix, Mac OS). Windows installation has not been tested.
 
 You won't need any web server for setting up an instance for a demonstration or development.
 
@@ -39,7 +39,7 @@ You won't need any web server for setting up an instance for a demonstration or 
 
 .. note:: 
 
-   To avoid installation and configuration of a postgresql server, you may use `our docker image <https://registry.hub.docker.com/u/chill/database/>`_ to start and configure a database.
+   To avoid installation and configuration of a postgresql server, you may use `our docker image <https://registry.hub.docker.com/u/chill/database/>`_ to start and configure a database. 
 
    After `docker installation <http://docs.docker.com/>`_, run : 
 
@@ -55,7 +55,7 @@ You won't need any web server for setting up an instance for a demonstration or 
 
       sudo docker port chill_db 5432 
 
-   This command will show on which port the docker container is listening, on your localhost. During the part :ref:`create-your-project` fill this port, and the address of the container (`localhost` or `127.0.0.1`). 
+   This command will show on which port the docker container is listening, on your localhost. During the part :ref:`create-your-project` this is the value to be used to fill the field 'database_port'. 
 
 Client requirements
 ^^^^^^^^^^^^^^^^^^^
@@ -67,8 +67,17 @@ Preparation
 
 You will need those informations :
 
-* The informations to access to your database: host, port, database name, and your credentials (username and password) ;
+* The information to access to your database: host, port, database name, and your credentials (username and password) ;
 * a random string, which will be use to improve entropy in security. Choose anything you want (random character, your father's birthplace, ...).
+
+If you have installed the docker database your information should be:
+    - database_host: 127.0.0.1
+    - database_port: [see above]
+    - database_name: postgres
+    - database_user: postgres
+    - database_password: postgres
+    - locale: fr
+    - secret: champs-libres
 
 Installation
 ------------
@@ -149,7 +158,7 @@ You may accept the default parameters of `debug_toolbar`, `debug_redirects` and 
 
 .. note::
 
-   At the end of your installation, composer will warn you to execute database migration script, with this message : ::
+   At the end of the installation, composer will warn you to execute database migration script, with this message : ::
 
      Some migration files have been imported. You should run 
      `php app/console doctrine:migrations:status` and/or 
