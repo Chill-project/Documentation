@@ -18,6 +18,7 @@ As Chill rely on the `symfony <http://symfony.com>`_ framework, reading the fram
     Instructions to create a new bundle <create-a-new-bundle.rst>
     Routing <routing.rst>
     Menus <menus.rst>
+    Access control model <access_control_model.rst>
     Message to users <flashbags.rst>
     Localisation <localisation.rst>
     Database migrations <migrations.rst>

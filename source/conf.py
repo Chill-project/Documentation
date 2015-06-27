@@ -54,6 +54,10 @@ if not on_rtd:
     'sensio.sphinx.bestpractice',
     ]
 
+#add configuration for api url
+
+api_url = 'http://api.chill.social/master/%s'
+
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
 
