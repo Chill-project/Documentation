@@ -6,11 +6,12 @@
    A copy of the license is included in the section entitled "GNU
    Free Documentation License".
 
-.. _install-new-bundles:
+.. _install-production-webserver:
 
-Install new bundles to your installation
-########################################
+Install production webserver
+############################
 
 .. todo::
 
-   the section "install new bundles" must be written. Help appreciated :-)
+   the section "Install production webserver" must be written. Help appreciated :-)
+   

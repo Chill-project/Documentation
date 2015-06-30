@@ -12,7 +12,7 @@
    Free Documentation License".
 
 Instructions about installation
-################################
+###############################
 
 You will learn here :
 
@@ -20,7 +20,9 @@ You will learn here :
    :maxdepth: 2
 
    How to install the software <installation.rst>
-   Add new bundles to your installation <install_new_bundles.rst>
+   Add bundles to your installation <install_additional_bundles.rst>
+   Install a PosgresSql server <install_postgres_server.rst>
+   Install production webserver <install_production_webserver.rst>
 
 
 .. todo::
