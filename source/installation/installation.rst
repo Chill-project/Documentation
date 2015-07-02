@@ -32,56 +32,13 @@ Server requirements
 
 * a postgresql database, with the `*unaccent* extension`_ enabled. The minimum version is postgresql 9.4. You can use `the docker image provided <https://registry.hub.docker.com/u/chill/database/>`_. Using the docker image is also a solution for production site. Alternatively you can install a PosgresSql server see :ref:`install-postgres-server`.
 * PHP 5.5.
+* Composer.
 * If you run Chill in production mode, you should also install a web server (apache, ngnix, ...) see :ref:`install-production-webserver`. For this basic installation meant for testing and/or development, we will make it simplier using the php built-in server.
 
-
-Let's start by installing and configuring the docker database.
-You will find all details concerning the installation of docker on their official site looking for your OS into the menu `Install/Docker Engine <http://docs.docker.com/>`_. 
-
-Once docker is installed, run : 
-
-.. code-block:: bash
-
-   sudo docker run -P --name=chill_db chill/database
-
-This will download the chill/database image and start a new docker instance with the name `chill_db` and export the postgresql port `5432` on another random local port. 
-
-.. _docker-database-port:
-
-The docker database port
-^^^^^^^^^^^^^^^^^^^^^^^^
-
-Open a new terminal and run 
-
-.. code-block:: bash
-
-   sudo docker port chill_db 5432 
-
-This command will show on which port the docker container is listening, on your localhost. During the part :ref:`create-your-project` this is the value to be used to fill the field 'database_port' as explained hereafter. 
-
-Preparation
------------
-
-To create your project, you will need the following information :
-
-* how to access to your database: host, port, database name, and your credentials (username and password) ;
-* a random string, which will be used to improve entropy in security. Choose anything you want (random character, your father's birthplace, ...).
-
-If you have installed the docker database your information should be:
-    - database_host: 127.0.0.1
-    - database_port: see :ref:`docker-database-port`
-    - database_name: postgres
-    - database_user: postgres
-    - database_password: postgres
-    - locale: fr
-
-Installation
-------------
-
-Chill is installed with `composer`_.
+Let's start by installing composer as it is needed to create and update our Chill project.
 
 Install composer
-^^^^^^^^^^^^^^^^
+""""""""""""""""
 
 ..  note::
   If you do not know composer, it is a good idea to have a glance at `the composer documentation`_ 
@@ -109,6 +66,76 @@ You can test the installation by running `which composer` or `composer`: those c
 .. note::
    See `the composer introduction`_ to learn how to install composer on Mac OS X and Windows
 
+The docker database
+"""""""""""""""""""
+
+Let's continue now by installing and configuring the docker database.
+You will find all details concerning the installation of docker on their official site looking for your OS into the menu `Install/Docker Engine <http://docs.docker.com/>`_. 
+
+Once docker is installed, run : 
+
+.. code-block:: bash
+
+   sudo docker run -P --name=chill_db chill/database
+
+This will download the chill/database image and start a new docker instance with the name `chill_db` and export the postgresql port `5432` on another random local port.
+You can exit from the terminal and check if the docker database is running with the following command:
+
+.. code-block:: bash
+
+   sudo docker ps
+
+   >>>> CONTAINER ID   IMAGE           COMMAND                CREATED       STATUS      PORTS                     NAMES
+   >>>> 08bbb62bd5e8   chill/database  "/docker-entrypoint.   6 days ago    Up 5 hours  0.0.0.0:32768->5432/tcp   chill_db
+   
+If the response does not show up 'chill_db', you can start and stop it via:
+
+.. code-block:: bash
+
+   sudo docker start chill_db
+   >>>> chill_db
+   
+   sudo docker stop chill_db
+   >>>> chill_db
+   
+
+Installation
+------------
+
+Chill is installed with `composer`_.
+
+.. _preparation:
+
+Preparation
+^^^^^^^^^^^
+
+Before creating your project, make sure that you know the following information :
+
+* how to access to your database: host, port, database name, and your credentials (username and password) ;
+* a random string, which will be used to improve entropy in security. Choose anything you want (random character, your father's birthplace, ...).
+
+.. note::
+
+   **If you have installed the docker database:**
+         
+   Open a terminal and run 
+   
+   .. code-block:: bash
+   
+      sudo docker port chill_db 5432 
+   
+   This command will show on which port the docker container is listening, on your localhost. 
+   This is the value to be used to fill the field 'database_port' hereafter.
+      
+   Your information should be:
+   
+       - database_host: 127.0.0.1
+       - database_port: result of the command hereabove.
+       - database_name: postgres
+       - database_user: postgres
+       - database_password: postgres
+       - locale: fr
+
 .. _create-your-project:
 
 Create your project
@@ -127,7 +154,7 @@ You should, now, move your cursor to the new directory
    cd path/to/your/directory
 
 .. note::
-   Until now, the stability of the project is set to "dev". Do not forget this argument, or composer will fail to download and create the project.
+   Until now, the stability of the project is set to "dev". Do not forget this argument, or composer will fail to download and create the project.    
 
 Composer will download `the standard architecture`_ and ask you a few question about how to configure your project.
 
@@ -137,9 +164,10 @@ Composer will download `the standard architecture`_ and ask you a few question a
 * `database_user` : the username to reach your database
 * `database_password` : your username's password
 * `locale`: the language, as iso code. Until now, only fr is supported
-* `secret`: the secret string you prepared (see "preparation")
+* `secret`: the secret string you prepared (see :ref:`preparation`)
 
-You may accept the default parameters of `debug_toolbar`, `debug_redirects` and `use_assetic_controller` for a demonstration installation. For production, set them all to `false`.
+You may accept the default parameters of `debug_toolbar`, `debug_redirects` and `use_assetic_controller` for a demonstration installation. 
+For production, set them all to `false`.
 
 .. note::
 
@@ -198,11 +226,11 @@ The main bundle require two scripts to be executed :
    php app/console chill:main:countries:populate 
    php app/console chill:main:languages:populate
 
-Those will populate database, respectively, with countries (using ISO declaration) and languages (using, also, ISO informations).
+Those will populate database, respectively, with basic dummy data, countries (using ISO declaration) and languages (using, also, ISO informations).
 
 
-Building CSS (optionnal)
-^^^^^^^^^^^^^^^^^^^^^^^^
+Building CSS (optional)
+^^^^^^^^^^^^^^^^^^^^^^^
 
 For this step, npm must be installed.
 
@@ -214,7 +242,6 @@ A build version of the needed CSS file is provided within the main bundle `Resou
    #in the main bundle directory ( vendor/chill-project/main/ )
    cd vendor/chill-project/main/Resources/
    npm install grunt
-
 
 Go back to your project root before doing next step
 
@@ -236,20 +263,6 @@ Your server should now be available at `http://localhost:8000`. Type this addres
 The default login is 'center a_social' with password 'password'.
 
 Have fun exploring Chill.
-
-
-Uninstall Chill
-```````````````
-
-.. todo::
-
-   the section "Uninstall Chill" must be written. Help appreciated :-)
-   
-Uninstall the docker database
------------------------------
-
-Uninstall the application
--------------------------
    
 
 .. _the composer documentation: https://getcomposer.org/doc/

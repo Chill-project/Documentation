@@ -6,8 +6,10 @@
    A copy of the license is included in the section entitled "GNU
    Free Documentation License".
 
+.. _create-new-bundle:
+
 Create a new bundle
-********************
+*******************
 
 Create your own bundle is not a trivial task.
 

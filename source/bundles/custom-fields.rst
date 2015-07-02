@@ -6,6 +6,8 @@
    A copy of the license is included in the section entitled "GNU
    Free Documentation License".
    
+.. _custom-fields-bundle:
+
 Custom fields bundle
 ====================
 
@@ -42,7 +44,7 @@ Some entities needs a **default** custom fields group. For instance, the default
    In the future of the `person bundle`, other custom fields group will be added in forms accessible from the menu, allowing users to completely customize and separate their entities.
    
 Allow custom fields on a entity
---------------------------------
+-------------------------------
 
 As a developer, you must allow your users to add custom fields on your entities.
 
@@ -126,7 +128,7 @@ Add those file under `chill_custom_fields` section :
 * The class, which is a full FQDN class path
 
 Automatically, in DependencyInjection/Extension class
-""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 This is the preferred way for declaring customizable classes. 
 
@@ -262,7 +264,7 @@ In the `PrependExtensionInterface::prepend` function, the options key will be ad
 Note that `custom_fields_group_linked_custom_fields` does not create any input on `CustomFieldsGroup` creation : there aren't any fields associated with the custom fields just after the group creation... You have to add custom fields and associate them with the newly created group to see them appears.
 
 Rendering custom fields in a template
---------------------------------------
+-------------------------------------
 
 Two function are available :
 
@@ -310,7 +312,7 @@ Examples:
 
 
 Custom Fields's form
----------------------
+--------------------
 
 You should simply use the 'custom_field' type in a template, with the group you would like to render in the `group` option's type.
 
@@ -377,7 +379,7 @@ Example :
 
 
 Development tips
------------------
+----------------
 
 If you want to test the rendering of a custom fields group, you may use this method :
 

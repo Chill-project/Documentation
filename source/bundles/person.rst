@@ -5,7 +5,9 @@
    with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
    A copy of the license is included in the section entitled "GNU
    Free Documentation License".
-   
+
+.. _person-bundle:
+
 Person bundle
 #############
 
@@ -23,12 +25,12 @@ Entities provided
    
    
 Search terms
-*************
+************
 
 The class `Chill\PersonBundle\Search\PersonSearch` provide the search module.
 
 Domain
-=======
+======
 
 The search upon "person" is provided by default. The `@person` domain search may be omitted.
 
