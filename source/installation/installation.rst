@@ -60,6 +60,7 @@ Install composer globally on you system will made the installation process easie
 .. code-block:: bash
 
    sudo mv composer.phar /usr/local/bin/composer
+   sudo chmod +x /usr/local/bin/composer
 
 You can test the installation by running `which composer` or `composer`: those command should not raise any error.
 
@@ -79,7 +80,8 @@ Once docker is installed, run :
    sudo docker run -P --name=chill_db chill/database
 
 This will download the chill/database image and start a new docker instance with the name `chill_db` and export the postgresql port `5432` on another random local port.
-You can exit from the terminal and check if the docker database is running with the following command:
+
+The db will start in your terminal. In another terminal, you can check if the docker database is running and showing the exposed port with the following command:
 
 .. code-block:: bash
 
@@ -88,7 +90,7 @@ You can exit from the terminal and check if the docker database is running with 
    >>>> CONTAINER ID   IMAGE           COMMAND                CREATED       STATUS      PORTS                     NAMES
    >>>> 08bbb62bd5e8   chill/database  "/docker-entrypoint.   6 days ago    Up 5 hours  0.0.0.0:32768->5432/tcp   chill_db
    
-If the response does not show up 'chill_db', you can start and stop it via:
+You can start and stop the container it via:
 
 .. code-block:: bash
 
@@ -223,31 +225,19 @@ The main bundle require two scripts to be executed :
 .. code-block:: bash
 
    php app/console doctrine:fixtures:load
-   php app/console chill:main:countries:populate 
-   php app/console chill:main:languages:populate
 
 Those will populate database, respectively, with basic dummy data, countries (using ISO declaration) and languages (using, also, ISO informations).
 
 
-Building CSS (optional)
-^^^^^^^^^^^^^^^^^^^^^^^
+Preparing assets
+^^^^^^^^^^^^^^^^
 
-For this step, npm must be installed.
-
-A build version of the needed CSS file is provided within the main bundle `Resources/public/css/chillmain.css`. For rebuilding it :
-
+You have to dump assets into the web directory. Even if the command should be run by Composer, you may run it manually :
 
 .. code-block:: bash
 
-   #in the main bundle directory ( vendor/chill-project/main/ )
-   cd vendor/chill-project/main/Resources/
-   npm install grunt
-
-Go back to your project root before doing next step
-
-.. code-block:: bash
-
-   cd path/to/your/directory
+   php app/console assetic:dump
+   php app/console assets:install
 
 
 Launch your server

@@ -21,7 +21,8 @@ A basic installation of Chill include four bundles:
 but you can add as many as needed by your project, and if the bundle does not exists yet, you can create a new one, see :ref:`create-new-bundle` .
    
 In Chill you are free to do what is most suitable for your activity, so let's go into details on how to add an existing bundle.
-We will add the bundle 'icpc2' that does something very important...
+
+We will add the bundle 'icpc2' that set `icpc code <https://en.wikipedia.org/wiki/International_Classification_of_Primary_Care>`_ available as custom field.
 
 .. todo::
    Add description of the bundle
@@ -45,5 +46,5 @@ So just do it:
 .. note::
    The following  has to be automated:
    
-   Finally we should modify the AppKernel.php file adding 'new Chill\Icpc2Bundle\ChillIcpc2Bundle(),' in the $bundle array.
+   Finally we should modify the AppKernel.php file adding `new Chill\\Icpc2Bundle\\ChillIcpc2Bundle(),` in the $bundle array as described `in the symfony documentation <http://symfony.com/doc/current/cookbook/bundles/installation.html#b-enable-the-bundle>`_.
       
