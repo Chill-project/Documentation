@@ -31,7 +31,7 @@ Server requirements
 ^^^^^^^^^^^^^^^^^^^
 
 * a postgresql database, with the `*unaccent* extension`_ enabled. The minimum version is postgresql 9.4. You can use `the docker image provided <https://registry.hub.docker.com/u/chill/database/>`_. Using the docker image is also a solution for production site. Alternatively you can install a PosgresSql server see :ref:`install-postgres-server`.
-* PHP 5.5.
+* PHP version >= 5.5. Check that extensions php5-intl and php5-pgsql are installed and that '*date.timezone*' is correctly defined in your php.ini.
 * Composer.
 * If you run Chill in production mode, you should also install a web server (apache, ngnix, ...) see :ref:`install-production-webserver`. For this basic installation meant for testing and/or development, we will make it simplier using the php built-in server.
 
@@ -90,15 +90,19 @@ The db will start in your terminal. In another terminal, you can check if the do
    >>>> CONTAINER ID   IMAGE           COMMAND                CREATED       STATUS      PORTS                     NAMES
    >>>> 08bbb62bd5e8   chill/database  "/docker-entrypoint.   6 days ago    Up 5 hours  0.0.0.0:32768->5432/tcp   chill_db
    
-You can start and stop the container it via:
+You can start the container it via:
 
 .. code-block:: bash
 
    sudo docker start chill_db
    >>>> chill_db
    
-   sudo docker stop chill_db
-   >>>> chill_db
+.. note:: The commande to stop the docker container is:
+  
+   .. code-block:: bash
+       
+      sudo docker stop chill_db
+      >>>> chill_db
    
 
 Installation
@@ -149,12 +153,6 @@ Create your Chill project using composer:
 
    composer create-project chill-project/standard path/to/your/directory --stability=dev
 
-You should, now, move your cursor to the new directory
-
-.. code-block:: bash
-
-   cd path/to/your/directory
-
 .. note::
    Until now, the stability of the project is set to "dev". Do not forget this argument, or composer will fail to download and create the project.    
 
@@ -192,6 +190,12 @@ For production, set them all to `false`.
 Check your requirements
 ^^^^^^^^^^^^^^^^^^^^^^^
 
+Move your cursor to the new directory
+
+.. code-block:: bash
+
+   cd path/to/your/directory
+
 You should check your installation by running 
 
 .. code-block:: bash
@@ -220,13 +224,13 @@ Populate your database with basic information
 
 Once your database schema is ready, you should populate your database with some basic information. Those are provided through scripts and might depends from the bundle you choose to install (see :ref:`install-additional-bundles`)
 
-The main bundle require two scripts to be executed : 
+The main bundle require one script to be executed : 
 
 .. code-block:: bash
 
    php app/console doctrine:fixtures:load
 
-Those will populate database, respectively, with basic dummy data, countries (using ISO declaration) and languages (using, also, ISO informations).
+Those will populate the database, with basic dummy data, countries (using ISO declaration) and languages (using, also, ISO informations).
 
 
 Preparing assets
