@@ -28,10 +28,15 @@ if not on_rtd:
     sys.path.append(os.path.abspath('./../_exts/sphinx-php'))
 
 
-    # adding PhpLexer
+# adding PhpLexer
+try:
     from sphinx.highlighting import lexers
     from pygments.lexers.compiled import CLexer
     from pygments.lexers.web import PhpLexer
+    php_lexer_available = True
+except ImportError:
+    php_lexer_available = False
+    print('specific import not available')
 
 # -- General configuration ------------------------------------------------
 
@@ -46,13 +51,33 @@ extensions = [
     'sphinx.ext.todo', 
 ]
 
-if not on_rtd:
-    extensions += [
-    'sensio.sphinx.refinclude',
-    'sensio.sphinx.configurationblock',
-    'sensio.sphinx.phpcode',
-    'sensio.sphinx.bestpractice',
-    ]
+try:
+    import sensio.sphinx.refinclude
+except ImportError:
+    print('sensio.sphinx.refinclude is not available')
+else:
+    extensions += ['sensio.sphinx.refinclude']
+
+try:
+    import sensio.sphinx.configurationblock
+except ImportError:
+    print('sensio.sphinx.configurationblock is not available')
+else:
+    extensions += ['sensio.sphinx.configurationblock']
+
+try:
+    import sensio.sphinx.phpcode
+except ImportError:
+    print('sensio.sphinx.phpcode')
+else:
+    extensions += ['sensio.sphinx.phpcode']
+
+try:
+    import sensio.sphinx.bestpractice
+except ImportError:
+    print('sensio.sphinx.bestpractice is not avaialble')
+else:
+    extensions += ['sensio.sphinx.bestpractice']
 
 #add configuration for api url
 
@@ -122,7 +147,7 @@ pygments_style = 'sphinx'
 #keep_warnings = False
 
 # -- Settings for symfony doc extension ---------------------------------------------------
-if not on_rtd:
+if php_lexer_available:
     # enable highlighting for PHP code not between ``<?php ... ?>`` by default
     lexers['php'] = PhpLexer(startinline=True)
     lexers['php-annotations'] = PhpLexer(startinline=True)
