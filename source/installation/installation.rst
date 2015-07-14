@@ -222,16 +222,13 @@ SQL queries will be printed into your console.
 Populate your database with basic information
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Once your database schema is ready, you should populate your database with some basic information. Those are provided through scripts and might depends from the bundle you choose to install (see :ref:`install-additional-bundles`)
-
-The main bundle require one script to be executed : 
+Once your database schema is ready, if you want to test the application you have the opportunity to populate your database with some basic data. 
+Those are provided through a script and might depends from the bundle you choose to install (see :ref:`install-additional-bundles`). 
+This script has not to be launched for a production server and will erase any existing data. It is meant only for testing the application.
 
 .. code-block:: bash
 
    php app/console doctrine:fixtures:load
-
-Those will populate the database, with basic dummy data, countries (using ISO declaration) and languages (using, also, ISO informations).
-
 
 Preparing assets
 ^^^^^^^^^^^^^^^^
