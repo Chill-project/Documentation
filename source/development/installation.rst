@@ -13,10 +13,10 @@ Installation for development
 
 Installation for development should let you able to have an access to the source code, upload the code to our CVS (i.e. `git`_), and working with `composer`_.
 
-As Chill is divided into modules, each module has his own repository.
+As Chill is divided into bundles (the Symfony name for 'modules'), each bundle has his own repository.
 
 Installation and big picture
------------------------------
+----------------------------
 
 At first, you should install Chill as described in the :ref:`basic-installation` section.
 
@@ -26,8 +26,7 @@ At first, You should add the `--prefer-source` argument when you create project.
 
 .. code-block:: bash
 
-   php composer.phar create-project chill-project/standard \
-     path/to/your/directory --stability=dev --prefer-source
+   composer create-project chill-project/standard path/to/your/directory --stability=dev --prefer-source
 
 Secondly, if composer ask you the following question : ::
 
@@ -35,7 +34,7 @@ Secondly, if composer ask you the following question : ::
 
 **You should answer `n` (no).**
 
-This will install a project. All downloaded modules will be stored in the `/vendor` directories. In those directories, you will have access to the git commands.
+This will install a project. All downloaded bundles will be stored in the `/vendor` directories. In those directories, you will have access to the git commands.
 
 .. code-block:: bash
 
@@ -46,13 +45,13 @@ This will install a project. All downloaded modules will be stored in the `/vend
     origin     git://github.com/Chill-project/Standard.git (fetch)
     origin     git@github.com:Chill-project/Standard.git (push)
 
-Deleted and added files after installation
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Files cleaning after installation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Composer will deleted unrequired files, and add some of them. This perfectly normal and will appears in your git index. But you should NOT delete those files.
+Composer will delete unrequired files, and add some. This is perfectly normal and will appears in your git index.
+But you should NOT delete those files.
 
-
-This should appears : 
+This is the expected 'git status' result: 
 
 .. code-block:: bash
 
@@ -68,7 +67,7 @@ This should appears :
 	      supprimé:        app/SymfonyStandard/RootPackageInstallSubscriber.php
 	      modifié:         app/check.php
 
-You can ignore the locally using the `git update-index --assume-unchanged` command.
+You can ignore the local changes using the `git update-index --assume-unchanged` command.
 
 .. code-block:: bash
 
@@ -80,9 +79,10 @@ You can ignore the locally using the `git update-index --assume-unchanged` comma
 Working with your own fork
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Ideally, you will work on a fork of the main github repository. To ensure that composer will download the code from **your** repository, you will have to adapt the `composer.json` file accordingly, using your own repository. 
+Ideally, you will work on a fork of the main github repository. 
+To ensure that composer will download the code from **your** repository, you will have to adapt the `composer.json` file accordingly, using your own repository. 
 
-Add the following lines to your composer.json file if you want to force composer to download from your own repository. This will force to use your own repository for the ChillMain bundle, insert in `composer.json` the following lines : 
+Add the following lines to your composer.json file if you want to force composer to download from your own repository: 
 
 .. code-block:: json
 
@@ -102,7 +102,7 @@ Editing the code and commiting
 
 You may edit code in the `vendor/path/to/the/bundle` directory.
 
-After your edits, you should commit as usually : 
+Once satisfied with your changes, you should commit as usually : 
 
 .. code-block:: bash
 
