@@ -11,18 +11,41 @@
    A copy of the license is included in the section entitled "GNU
    Free Documentation License".
 
-Instructions about installation
+Installation
 ###############################
 
-You will learn here :
+Very quick install with docker
+=================================
 
 .. toctree::
    :maxdepth: 2
 
+   Very quick install with docker <very_quick_start_with_docker.rst>
+   
+Usage in production
+====================
+
+.. toctree::
+   :maxdepth: 2
+   
    How to install the software <installation.rst>
+   
+Update Chill and maintenance 
+==============================
+
+.. toctree::
+   :titlesonly:
+   
    Update Chill <update_chill.rst>
    Add bundles to your installation <install_additional_bundles.rst>
    Uninstall Chill <uninstall_chill.rst>
+   
+Database preparation
+=====================
+
+.. toctree::
+   :titlesonly:
+   
    Install a PosgresSql server <install_postgres_server.rst>
    Install production webserver <install_production_webserver.rst>
 
