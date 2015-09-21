@@ -16,7 +16,7 @@ We have created a `docker container <https://hub.docker.com/r/chill/demo-flavor/
 
 .. note:: 
 
-   We assume docker is already installed on your machine. If Docker is not installed, have a look at `the install page in the docker documentation <https://docs.docker.com/>`.
+   We assume docker is already installed on your machine. If Docker is not installed, have a look at `the install page in the docker documentation <https://docs.docker.com/>`_.
    
 Starting the containers
 ========================
@@ -37,7 +37,7 @@ Run the container containing the code and attach it to the database :
 
 The image will also be downloaded from docker registry on first run.
 
-You can then browse on `http://localhost:8989 <http://localhost8989>`_ and login with the created users, like `center a_social`.
+You can then browse on `http://localhost:8989 <http://localhost:8989>`_ and login with the created users, like `center a_social` (the complete list is below). Password is always 'password'.
 
 Stopping the containers
 =======================
@@ -52,6 +52,23 @@ Limitations
 
 * Those container should not be used in production
 * The database should not be persisted or store persistant information: at each container startup, the container's data will be erased and replaced by new (partially) random fixtures
+
+Users created
+==============
+
+The passwords are always `password` :
+
+The user's login created are :
+
+* center a_social
+* center a_administrative
+* center a_direction
+* center b_social
+* center b_administrative
+* center b_direction
+* multi_center
+* admin
+
 
 
 .. _the composer documentation: https://getcomposer.org/doc/
