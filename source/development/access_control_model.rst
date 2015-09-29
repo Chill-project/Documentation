@@ -129,11 +129,16 @@ Those methods are intentionnaly build to give information about user rights:
 Adding your own roles
 =====================
 
-.. warning::
-
-   This part is not fully implemented. The signature of the abstract class :class:`Chill\\Security\\Authorization\\ChillVoter` will change in the future.
-
 Extending Chill will requires you to define your own roles and rules for your entities. You will have to define your own voter to do so.
+
+To create your own roles, you should: 
+
+* implement your own voter. This voter will have to extends the :class:`Chill\\MainBundle\\Security\\AbstractChillVoter`. As defined by Symfony, this voter must be declared as a service and tagged with `security.voter`;
+* declare the role through implementing a service tagged with `chill.role` and implementing :class:`Chill\\MainBundle\\Security\\ProvideRoleInterface`.
+
+.. note::
+
+   Both operation may be done through a simple class: you can implements :class:`Chill\\MainBundle\\Security\\ProvideRoleInterface` and :class:`Chill\\MainBundle\\Security\\AbstractChillVoter` on the same class. See live example: :class:`Chill\\ActivityBundle\\Security\\Authorization\\ActivityVoter`, and similar examples in the `PersonBundle` and `ReportBundle`.
 
 .. seealso::
 
@@ -146,8 +151,71 @@ Extending Chill will requires you to define your own roles and rules for your en
    From the symfony blog
 
 
+Declare your role
+------------------
 
-To create your own roles, you will have to implement your own voter. This voter will have to extends the :class:`Chill\\MainBundle\\Security\\AbstractChillVoter`. Inside this class, you might use the :class:Chill\\MainBundle\\Security\\Authorization\\AuthorizationHelper to check permission (do not re-invent the wheel). This is a real-world example:
+To declare new role, implement the class :class:`Chill\\MainBundle\\Security\\ProvideRoleInterface`. 
+
+.. code-block:: php
+
+   interface ProvideRoleInterface
+   {
+       /**
+        * return an array of role provided by the object
+        * 
+        * @return string[] array of roles (as string)
+        */
+       public function getRoles();
+       
+       /**
+        * return roles which doesn't need 
+        * 
+        * @return string[] array of roles without scopes
+        */
+       public function getRolesWithoutScope();
+   }
+
+
+Then declare your service with a tag `chill.role`. Example : 
+
+.. code-block:: yaml
+
+       your_service:
+           class: Chill\YourBundle\Security\Authorization\YourVoter
+           tags:
+               - { name: chill.role }
+
+
+Example of an implementation of :class:`Chill\\MainBundle\\Security\\ProvideRoleInterface`:
+
+.. code-block:: php
+
+   namespace Chill\PersonBundle\Security\Authorization;
+
+   use Chill\MainBundle\Security\ProvideRoleInterface;
+
+   class PersonVoter implements ProvideRoleInterface
+   {
+       const CREATE = 'CHILL_PERSON_CREATE';
+       const UPDATE = 'CHILL_PERSON_UPDATE';
+       const SEE    = 'CHILL_PERSON_SEE';
+       
+       public function getRoles()
+       {
+           return array(self::CREATE, self::UPDATE, self::SEE);
+       }
+
+       public function getRolesWithoutScope()
+       {
+           return array(self::CREATE, self::UPDATE, self::SEE);
+       }
+
+   }
+
+Implement your voter
+--------------------
+
+Inside this class, you might use the :class:`Chill\\MainBundle\\Security\\Authorization\\AuthorizationHelper` to check permission (do not re-invent the wheel). This is a real-world example:
 
 .. code-block:: php
 
