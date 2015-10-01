@@ -11,7 +11,7 @@
 Custom fields bundle
 ====================
 
-This bundle provide the ability to add custom fields to existing entities.
+This bundle provides the ability to add custom fields to existing entities.
 
 Those custom fields contains extra data and will be stored in the DB, along with other data's entities. It may be string, text, date, ... or a link to an existing or to-be-created other entities.
 
@@ -28,7 +28,7 @@ Custom Fields concepts
 
 Custom fields are extra data which may be added to entities by user. If a developer implements custom fields on a entity, users will be able to add more fields on this entity.
 
-Example: the `person bundle` allow to record `firstname`, `lastname`, `date of birth` fields. But users need to store information about the kind of house he has (if he owns his house, if he rents it, ...). Custom fields allow to create those fields.
+Example: the `person bundle` allows to record `firstname`, `lastname`, `date of birth` fields. But users need to store information about the kind of house he has (if he owns his house, if he rents it, ...). Custom fields allows to create those fields.
 
 Automatically, those fields are added at the person form. They are also printed in the person view and in exports.
 
@@ -43,8 +43,8 @@ Some entities needs a **default** custom fields group. For instance, the default
 
    In the future of the `person bundle`, other custom fields group will be added in forms accessible from the menu, allowing users to completely customize and separate their entities.
    
-Allow custom fields on a entity
--------------------------------
+Allow custom fields on an entity
+--------------------------------
 
 As a developer, you must allow your users to add custom fields on your entities.
 
