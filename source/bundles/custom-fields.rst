@@ -77,7 +77,7 @@ Create the field accordingly in the class logic :
    /**
    * @var array
    */
-   private $customField = array();
+   private $customField;
    
    /**
    * You must set a setter in order to save automatically custom 
