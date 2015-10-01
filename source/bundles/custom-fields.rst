@@ -108,13 +108,16 @@ Declare your customizable entity in configuration
 
 This step is necessary to allow user to create custom fields group associated with this entity.
 
-Two methods are available :
+Two methods are available.
 
-* In your app/config.yml file. This is the easiest method, but discouraged because it will reduce the ease for installation.
-* In your Extension class : a bit harder for devs, much easier for installers.
+The recommended method is to do it in DependencyInjection/Extension class. It is recommended as your bundle will be well set up (for custom field) in every chill installation that use it.
 
-In app/config.yml file
-""""""""""""""""""""""
+The discouraged method is to declare via the app/config.yml file. This is very quick to set up for a given chill installation but it is not done automatically : in every chill installation that use your bundle, this step has to be performed.
+
+In app/config.yml file (discouraged)
+""""""""""""""""""""""""""""""""""""
+
+This method is discouraged but explained first as it helps to undersand the recommended method.
 
 Add those file under `chill_custom_fields` section :
 
@@ -122,15 +125,15 @@ Add those file under `chill_custom_fields` section :
 
    chill_custom_fields:
       customizables_entities:
-         - { class: Chill\CustomFieldsBundle\Entity\BlopEntity, name: blop_entity }
+         - { class: Chill\YourBundleBundle\Entity\BlopEntity, name: blop_entity }
          
 * The `name` allow you to define a string which is translatable. This string will appears when chill's admin will add/retrieve new customFieldsGroup.
 * The class, which is a full FQDN class path
 
-Automatically, in DependencyInjection/Extension class
-"""""""""""""""""""""""""""""""""""""""""""""""""""""
+Automatically, in DependencyInjection/Extension class (recommended)
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-This is the preferred way for declaring customizable classes. 
+This is the recommended way for declaring customizable classes. 
 
 You can prepend configuration of `custom fields bundle` from the class `YourBundle\DependencyInjection\YourBundleExtension`. **Note** that you also have to implements `Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface` on this class to make the `prepend` function being taken into account.
 
@@ -138,37 +141,38 @@ Example here :
 
 .. code-block:: php
 
-   class ChillReportExtension extends Extension implements PrependExtensionInterface
-   {
-       /**
-        * 
-        * 
-        * @param ContainerBuilder $container
-        */
-       public function prepend(ContainerBuilder $container)
-       {
-           $bundles = $container->getParameter('kernel.bundles');
-           if (!isset($bundles['ChillCustomFieldsBundle'])) {
-               throw new MissingBundleException('ChillCustomFieldsBundle');
-           }
+    class ChillYourBundleExtension extends Extension implements PrependExtensionInterface
+    {
+        /**
+         * @param ContainerBuilder $container
+         */
+        public function prepend(ContainerBuilder $container)
+        {
+            $bundles = $container->getParameter('kernel.bundles');
+            if (!isset($bundles['ChillCustomFieldsBundle'])) {
+                throw new MissingBundleException('ChillCustomFieldsBundle');
+            }
 
-           $container->prependExtensionConfig('chill_custom_fields',
-               array('customizables_entities' => 
-                   array(
-                       array(
-                          'class' => 'Chill\ReportBundle\Entity\Report', 
-                          'name' => 'ReportEntity',
-                          )
+            $container->prependExtensionConfig('chill_custom_fields',
+                array('customizables_entities' => 
+                    array(
+                        array(
+                            'class' => 'Chill\YourBundleBundle\Entity\BlopEntity', 
+                            'name' => 'blop_entity',)
                    )
                )
-           );
-       }
-   }
+            );
+        }
+    }
+
+* The `name` allow you to define a string which is translatable. This string will appears when chill's admin will add/retrieve new customFieldsGroup.
+* The class, which is a full FQDN class path
 
 .. seealso::
 
    `How to simplify configuration of multiple bundles <http://symfony.com/doc/current/cookbook/bundles/prepend_extension.html>`_
       A cookbook page about prepending configuration.
+
 
 Adding options to your custom fields groups
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -182,8 +186,8 @@ In `config.yml` the declaration should be :
    chill_custom_fields:
        customizables_entities:
            - 
-               class: Chill\ReportBundle\Entity\Report
-               name: ReportEntity
+               class: Chill\YourBundleBundle\Entity\BlopEntity
+               name: BlopEntity
                options:
                    # this will create a "myFieldKey" field as text, with a maxlength attribute to 150 (see http://symfony.com/doc/master/reference/forms/types/text.html)
                    myFieldKey: {form_type: text, form_options: {attr: [maxlength: 150]}} 
@@ -192,11 +196,9 @@ In the `PrependExtensionInterface::prepend` function, the options key will be ad
 
 .. code-block:: php
 
-   class ChillReportExtension extends Extension implements PrependExtensionInterface
+   class ChillYourBundleExtension extends Extension implements PrependExtensionInterface
    {
        /**
-        * 
-        * 
         * @param ContainerBuilder $container
         */
        public function prepend(ContainerBuilder $container)
@@ -210,8 +212,8 @@ In the `PrependExtensionInterface::prepend` function, the options key will be ad
                array('customizables_entities' => 
                    array(
                        array(
-                          'class' => 'Chill\ReportBundle\Entity\Report', 
-                          'name' => 'ReportEntity',
+                          'class' => 'Chill\YourBundleBundle\Entity\BlopEntity', 
+                          'name' => 'BlopEntity',
                           'options' => array(
                                 'myFieldKey' => [ 'form_type' => 'text', 'form_options' => [ 'attr' => [ 'maxlength' => 150 ] ]
                           ))
@@ -263,13 +265,20 @@ In the `PrependExtensionInterface::prepend` function, the options key will be ad
 
 Note that `custom_fields_group_linked_custom_fields` does not create any input on `CustomFieldsGroup` creation : there aren't any fields associated with the custom fields just after the group creation... You have to add custom fields and associate them with the newly created group to see them appears.
 
-Rendering custom fields in a template
--------------------------------------
+Rendering custom fields and custom fields group in a template
+-------------------------------------------------------------
 
-Two function are available :
+.. warning::
+    Each custom field can be `active` or not. Only `active` custom fields has to be dislayed.
+
+For rendering custom fields, two function are available :
 
 * `chill_custom_field_widget` to render the widget. This function is defined on a customFieldType basis.
 * `chill_custom_field_label` to render the label. You can customize the label rendering by choosing the layout you would like to use.
+
+For rendering custom fields group, a function is available :
+
+* `chill_custom_fields_group_widget to render the widget. It will display the custom fields of the group in a dd / dt structure.
 
 **chill_custom_field_label**
 
@@ -292,8 +301,10 @@ Examples
 
 **chill_custom_field_widget**
 
+The signature is :
+
 *  array **$fields** the array raw, as stored in the db
-*  CustomField|object|string $customFieldOrClass either a customField OR a customizable_entity OR the FQDN of the entity
+*  CustomField|object|string **$customFieldOrClass** either a customField OR a customizable_entity OR the FQDN of the entity
 *  string **$slug** only necessary if the first argument is NOT a CustomField instance
 
 Examples:
@@ -310,6 +321,19 @@ Examples:
 
    This feature is not fully tested. See `the corresponding issue <https://redmine.champs-libres.coop/issues/283>`_
 
+
+**chill_custom_fields_group_widget**
+
+This function only display custom fields that are `active.
+
+The signature is :
+
+*  array **$fields** the array raw, as stored in the db
+*  CustomFieldsGroup **$customFieldsGroup** the custom field group to render
+
+.. code-block:: jinja
+
+   {{ chill_custom_fields_group_widget(entity.cFData, entity.customFieldsGroup) }}
 
 Custom Fields's form
 --------------------
