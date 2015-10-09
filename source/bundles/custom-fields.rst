@@ -48,6 +48,10 @@ Allow custom fields on an entity
 
 As a developer, you must allow your users to add custom fields on your entities.
 
+.. warning::
+    For having custom fields, the class of the entity must contain a variable for storing the custom data. **By convention this variable must be called $cFData**
+
+
 Create a json field on your entity
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -59,7 +63,7 @@ Declare a json field in your database :
       type: entity
       # ...
       fields:
-         customField:
+         cFData:
             type: json_array
             
 Create the field accordingly in the class logic :
@@ -77,18 +81,18 @@ Create the field accordingly in the class logic :
    /**
    * @var array
    */
-   private $customField;
+   private $cFData;
    
    /**
    * You must set a setter in order to save automatically custom 
    * fields from forms, using Form Component
    *
-   * @param array $customField
+   * @param array $cFData
    * @return BlopEntity
    */
-   public function setCustomField(array $customField)
+   public function setCFData(array $cFData)
    {
-      $this->customField = $customField;
+      $this->cFData = $cFData;
       return $this;
    }
    
@@ -98,9 +102,9 @@ Create the field accordingly in the class logic :
    *
    * @return array
    */
-   public function getCustomField()
+   public function getCFData()
    {
-      return $this->customField;
+      return $this->cFData;
    }
             
 Declare your customizable entity in configuration
