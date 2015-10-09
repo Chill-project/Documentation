@@ -20,8 +20,32 @@ We have created a `docker container <https://hub.docker.com/r/chill/demo-flavor/
    
 Starting the containers
 ========================
+
+Mac OS X & docker
+-----------------
+
+To use docker on Mac OS X you need to use `boot2docker` or `docker-machine`
+
+Configuration of `boot2docker`
+``````````````````````````````
+
+.. code-block:: bash
+
+   $ boot2docker start
+   $ boot2docker shellinit
+
+
+Configuration of `docker-machine`
+`````````````````````````````````
+
+.. code-block:: bash
+
+   $ docker-machine start default
+   $ eval "$(docker-machine env default)"
    
-Prepare a database:
+   
+Prepare a database
+------------------
 
 .. code-block:: bash
 
@@ -29,7 +53,8 @@ Prepare a database:
    
 The first time you will run this command, the image will be downloaded from docker registry. Please be patient.
 
-Run the container containing the code and attach it to the database :
+Run the container containing the code and attach it to the database
+-------------------------------------------------------------------
 
 .. code-block:: bash
 
@@ -37,7 +62,7 @@ Run the container containing the code and attach it to the database :
 
 The image will also be downloaded from docker registry on first run.
 
-You can then browse on `http://localhost:8989 <http://localhost:8989>`_ and login with the created users, like `center a_social` (the complete list is below). Password is always 'password'.
+You can then browse on `http://localhost:8989 <http://localhost:8989>`_ and login with the created users, like `center a_social` (the complete list is below). Password is always 'password'. For Mac OS X, replace `localhost` by the IP of the docker VM (`boot2docker ip` or `docker-machine ip default`).
 
 Stopping the containers
 =======================
