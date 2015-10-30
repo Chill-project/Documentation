@@ -19,7 +19,7 @@ To compile this documentation :
 Contribute
 ===========
 
-Issue tracker : https://redmine.champs-libres.coop/projects/chill/issues (certificate is located here : http://www.champs-libres.coop/ca.pem)
+Issue tracker : https://git.framasoft.org/groups/Chill-project/issues
 
 Licence
 =======
