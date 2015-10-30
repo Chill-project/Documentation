@@ -6,10 +6,14 @@
    A copy of the license is included in the section entitled "GNU
    Free Documentation License".
 
+Messages to users
+******************
+
+
 .. _flashbags :
 
-Flashbags: message to users
-****************************
+Flashbags
+==========
 
 The four following levels are defined : 
 
@@ -33,3 +37,35 @@ The four following levels are defined :
 
    `Flash Messages on Symfony documentation <http://symfony.com/doc/current/book/controller.html#flash-messages>`_
       Learn how to use flash messages in controller.
+
+
+Buttons
+========
+
+Four actions are available to decorate `a` links and `buttons`.
+
+To add the action on button, use them as class along with `sc-button` :
+
+.. code-block:: html
+
+   <a class="sc-button bt-create">Create an entity</a>
+
+   <button class="sc-button bt-submit" type="submit">Submit</button>
+
++-----------+--------------+------------------------------------------------------------------------------+
+| Action    |  Class       | Description                                                                  |
++===========+==============+==============================================================================+
+| Submit    | `bt-submit`  | Submit a form.                                                               |
++-----------+--------------+------------------------------------------------------------------------------+
+| Create    | `bt-create`  | Link to a form to create an entity                                           |
++-----------+--------------+------------------------------------------------------------------------------+
+| Reset     | `bt-reset`   | Reset a form                                                                 |
++-----------+--------------+------------------------------------------------------------------------------+
+| Delete    | `bt-delete`  | Link to a form to delete an entity                                           |
++-----------+--------------+------------------------------------------------------------------------------+
+| Edit      | `bt-edit`    | Link to a form to edit an entity                                             |
++-----------+--------------+------------------------------------------------------------------------------+
+| Update    | `bt-update`  | Submitting this form will update the entity                                  |
++-----------+--------------+------------------------------------------------------------------------------+
+| Action    | `bt-action`  | Generic link to an action                                                    |
++-----------+--------------+------------------------------------------------------------------------------+

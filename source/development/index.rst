@@ -20,7 +20,7 @@ As Chill rely on the `symfony <http://symfony.com>`_ framework, reading the fram
     Menus <menus.rst>
     Layout / Template usage <layout-template-usage.rst>
     Access control model <access_control_model.rst>
-    Message to users <flashbags.rst>
+    Messages to users <messages-to-users.rst>
     Localisation <localisation.rst>
     Database migrations <migrations.rst>
     Searching <searching.rst>
