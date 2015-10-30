@@ -42,6 +42,15 @@ Configuration of `docker-machine`
 
    $ docker-machine start default
    $ eval "$(docker-machine env default)"
+
+
+Getting the last version of the docker images
+----------------------------------------------
+
+.. code-block:: bash
+
+   docker pull chill/database
+   docker pull chill/demo-flavor
    
    
 Prepare a database
