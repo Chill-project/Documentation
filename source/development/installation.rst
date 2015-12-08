@@ -11,30 +11,35 @@
 Installation for development
 ****************************
 
-Installation for development should let you able to have an access to the source code, upload the code to our CVS (i.e. `git`_), and working with `composer`_.
+Installation for development should allow:
+
+	- access to the source code, 
+	- upload the code to our CVS (i.e. `git`_) and 
+	- work with `composer`_.
 
 As Chill is divided into bundles (the Symfony name for 'modules'), each bundle has his own repository.
 
 Installation and big picture
 ----------------------------
 
-At first, you should install Chill as described in the :ref:`basic-installation` section.
+First, you should install Chill as described in the :ref:`basic-installation` section.
 
 Two things must be modified : 
 
-At first, You should add the `--prefer-source` argument when you create project. 
+First, add the `--prefer-source` argument when you create project. 
 
 .. code-block:: bash
 
    composer create-project chill-project/standard path/to/your/directory --stability=dev --prefer-source
 
-Secondly, if composer ask you the following question : ::
+Second, when composer ask you the following question : ::
 
   Do you want to remove the existing VCS (.git, .svn..) history? [Y,n]?
 
 **You should answer `n` (no).**
 
-This will install a project. All downloaded bundles will be stored in the `/vendor` directories. In those directories, you will have access to the git commands.
+Once Chill is installed, all the downloaded bundles will be stored in the `/vendor` directories. 
+In those directories, you will have access to the git commands.
 
 .. code-block:: bash
 
@@ -80,9 +85,10 @@ Working with your own fork
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Ideally, you will work on a fork of the main github repository. 
-To ensure that composer will download the code from **your** repository, you will have to adapt the `composer.json` file accordingly, using your own repository. 
+To ensure that composer will download the code from **your** repository, you will have to adapt the `composer.json` file accordingly, using your own repositories. 
 
-Add the following lines to your composer.json file if you want to force composer to download from your own repository: 
+For each Chill module that you have forked, add an indexed array into the "repositories" key of the composer.json file 
+at the root of the chill installation directory if you want to force composer to download from your own forked repositories: 
 
 .. code-block:: json
 
@@ -90,9 +96,21 @@ Add the following lines to your composer.json file if you want to force composer
        {
          "type": "git",
          "url": "git://github.com/your-github-username/ChillMain.git"
+       },
+       {
+         "type": "git",
+         "url": "git://github.com/your-github-username/Chill-Person.git"
        }
     ]
+    
 
+Then run composer update to load your forked code. 
+If it does not happen, delete the content of the chill/vendor/chill-project/my_forked_bundle and relaunch composer update and the code will be downloaded from your fork.
+
+.. code-block:: bash
+
+   composer update
+   
 You may also `use aliases <https://getcomposer.org/doc/articles/aliases.md>`_ to define versions.
 
 .. _editing-code-and-commiting :
