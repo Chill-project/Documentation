@@ -1,3 +1,5 @@
+_exts
 build/*
 !build/git.txt
 *~
+.project
