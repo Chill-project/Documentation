@@ -12,12 +12,14 @@ Install PostgresSql server
 ##########################
 
 On a linux environment, installing Postgresql server is very easy.
-Here follows the instructions for a debian based distribution (as Ubuntu).
+Here follows the instructions for a debian based distribution (as Ubuntu) using the distribution repositories.
+To have the latest version follow the instructions of the `Postgresql wiki`_.
 
 .. code-block:: bash
 	
 	sudo apt-get update
-	sudo apt-get install postgresql
+	sudo apt-get install postgresql   
+
 	
 Having a look at the install messages, you will guess quickly which is the version installed.
 Anyway you can check this with the following code:
@@ -50,18 +52,13 @@ Here follows as an example the instructions that has been used on Ubuntu 14.04 d
 Feel free to customize it following your preferences, but do not forget to enable the `unaccent` extension on your database.
 
 .. code-block:: bash
-
-	sudo su
-	su postgres
-	psql
-		CREATE USER chill_user WITH PASSWORD 'my_terrible_secret' CREATEDB;
-		CREATE DATABASE chill_db OWNER chill_user LC_COLLATE 'en_US.UTF-8' LC_CTYPE 'en_US.UTF-8';
-	\q
-	psql -d chill_db
-		CREATE EXTENSION unaccent;
-	\q
-	exit
-	exit
+  
+   sudo su
+   su postgres
+   # At the prompt of the following instruction, I have typed 'my_terrible_secret' as password
+   createuser --pwprompt chill_user
+   createdb -O chill_user chill_db
+   psql -d chill_db -c "CREATE EXTENSION unaccent;"
 	
 When you will use composer to install Chill, you will have to provide some database information.
 If you follow this tutorial these will be:
@@ -72,3 +69,6 @@ If you follow this tutorial these will be:
    - database_user: chill_user
    - database_password: my_terrible_secret
    - locale: en
+   
+ 
+ .. _Postgresql wiki: https://wiki.postgresql.org/wiki/Apt
